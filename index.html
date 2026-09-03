@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>Vaibhav Chavanpatil | Full-Stack Developer & ML Researcher</title>
+  <meta name="description" content="Portfolio of Vaibhav Chavanpatil - 3rd Year CSE Student, Full-Stack Developer, and Deep Learning Researcher specializing in loss function theory, physics-guided satellite vision, and resilient web architectures.">
+  <meta name="author" content="Vaibhav Chavanpatil">
+  <meta name="keywords" content="Vaibhav Chavanpatil, Full-Stack Developer, Machine Learning, Deep Learning Research, PyTorch, React, Node.js, Remote Sensing, CSE Portfolio">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Vaibhav Chavanpatil | Full-Stack Developer & ML Researcher">
+  <meta property="og:description" content="Computer Science student engineering resilient software systems and deep learning models.">
+  <meta property="og:url" content="https://github.com/VAIBHAV7848">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Ambient Interactive Neural Mesh Canvas -->
+  <canvas id="neural-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- ======================================================================
+       Site Header & Navigation
+       ====================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      <a href="#hero" class="brand-monogram" aria-label="Vaibhav Chavanpatil Home">
+        <span class="monogram-badge">VC</span>
+        <span>Vaibhav<span style="color: var(--accent-cyan)">.dev</span></span>
+      </a>
+
+      <nav class="nav" role="navigation" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#terminal" class="nav-link">CLI Sandbox</a></li>
+          <li><a href="#research-lab" class="nav-link">ML Lab</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#timeline" class="nav-link">Milestones</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Audio Synthesizer Toggle -->
+        <button id="audio-toggle-btn" class="icon-btn" aria-label="Toggle keyboard sound effects" title="Toggle Sound FX (Web Audio)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle light or dark theme" title="Toggle Theme">
+          <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <a href="https://github.com/VAIBHAV7848" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub Profile" title="GitHub Profile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+
+        <a href="#contact" class="cta-button primary">Let's Connect</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       Hero Section
+       ====================================================================== -->
+  <main id="main-content">
+    <section id="hero" class="hero-section" aria-labelledby="hero-title">
+      <div class="hero-container">
+        <div class="hero-content">
+          <!-- Cybernetic Research HUD Telemetry -->
+          <div class="hud-bar" role="status" aria-label="System Telemetry">
+            <span class="hud-item"><span class="hud-indicator live"></span>SYS: ONLINE</span>
+            <span class="hud-item">LOC: 15.85°N, 74.50°E (KA, IN)</span>
+            <span class="hud-item">FOCUS: ROBUST DL THEORY</span>
+            <span class="hud-item">PING: <span id="hud-ping" class="tabular-nums">14ms</span></span>
+          </div>
+
+          <div class="status-pill" role="status">
+            <span class="status-dot"></span>
+            <span>Available for SWE & ML Research Roles</span>
+          </div>
+
+          <h1 id="hero-title" class="hero-title">
+            Vaibhav Chavanpatil
+          </h1>
+
+          <p class="hero-tagline">
+            3rd Year CSE • Full-Stack Systems & Applied ML Researcher
+          </p>
+
+          <p class="hero-bio" id="about">
+            Undergraduate in Computer Science & Engineering combining theoretical machine learning research with robust full-stack software architecture. From formulating noise-resilient neural loss dynamics to building physics-guided satellite vision systems and offline-first SaaS platforms.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#research-lab" class="cta-button primary">
+              <span>Launch ML Lab</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </a>
+            <a href="#projects" class="cta-button secondary">
+              <span>Featured Work</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#terminal" class="cta-button secondary">
+              <span>Interactive CLI >_</span>
+            </a>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <span class="metric-value tabular-nums" id="metric-repos">29+</span>
+              <span class="metric-label">Repositories</span>
+              <span class="metric-detail">Codebases authored</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value tabular-nums">3</span>
+              <span class="metric-label">Deep Learning</span>
+              <span class="metric-detail">Theory & Vision</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value tabular-nums">6+</span>
+              <span class="metric-label">Full-Stack Apps</span>
+              <span class="metric-detail">Campus & Systems</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value tabular-nums" id="metric-stars">15+</span>
+              <span class="metric-label">Stars & Impact</span>
+              <span class="metric-detail">Open Source</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Terminal Simulator -->
+        <div class="terminal-wrapper" id="terminal">
+          <div class="terminal-card" role="region" aria-label="Interactive Developer Terminal">
+            <div class="terminal-header">
+              <div class="terminal-controls">
+                <span class="terminal-circle close"></span>
+                <span class="terminal-circle minimize"></span>
+                <span class="terminal-circle maximize"></span>
+              </div>
+              <span class="terminal-title">vaibhav@portfolio-cli: ~ (bash)</span>
+              <span class="sound-indicator" id="sound-indicator" title="Audio feedback status">🔊 SFX ON</span>
+            </div>
+
+            <div class="terminal-body" id="terminal-body">
+              <div class="terminal-output">
+                <span class="terminal-line cyan">=== Vaibhav Chavanpatil CLI v2.4 ===</span><br>
+                <span class="terminal-line muted">Type <span class="terminal-line green">help</span> or click command chips below to inspect profile.</span><br><br>
+                <span class="terminal-line green">✓ Connected to GitHub: @VAIBHAV7848</span><br>
+                <span class="terminal-line muted">Try running '<span class="terminal-line cyan">matrix</span>', '<span class="terminal-line cyan">lab</span>', or '<span class="terminal-line cyan">projects</span>'.</span>
+              </div>
+            </div>
+
+            <div class="terminal-chips">
+              <span class="terminal-chip-label">Run:</span>
+              <button class="terminal-chip" data-cmd="bio">bio</button>
+              <button class="terminal-chip" data-cmd="skills">skills</button>
+              <button class="terminal-chip" data-cmd="projects">projects</button>
+              <button class="terminal-chip" data-cmd="lab">lab</button>
+              <button class="terminal-chip" data-cmd="matrix">matrix</button>
+              <button class="terminal-chip" data-cmd="contact">contact</button>
+              <button class="terminal-chip" data-cmd="clear">clear</button>
+            </div>
+
+            <form id="terminal-form" class="terminal-prompt-line" style="padding: 10px 16px; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle)">
+              <span class="terminal-prompt-user">guest@vaibhav</span><span class="terminal-prompt-symbol">:~$</span>
+              <input type="text" id="terminal-input" class="terminal-input" placeholder="Type command here (e.g., help, matrix, lab)..." autocomplete="off" spellcheck="false" aria-label="Terminal input prompt">
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         Interactive ML Research Lab (Show, Don't Just Tell)
+         ====================================================================== -->
+    <section id="research-lab" class="section-container" aria-labelledby="lab-title">
+      <div class="section-header">
+        <span class="section-eyebrow">Interactive Live Simulator</span>
+        <h2 id="lab-title" class="section-title">Deep Learning Lab: Loss Dynamics Under Label Noise</h2>
+        <p class="section-desc">
+          Live in-browser simulation demonstrating how noise corruption warps cross-entropy boundaries versus robust loss formulations. Move the noise slider to observe overfitting divergence in real time.
+        </p>
+      </div>
+
+      <div class="lab-container">
+        <!-- Interactive Controls -->
+        <div class="lab-controls-panel">
+          <div class="lab-panel-header">
+            <span class="lab-indicator"></span>
+            <span>HYPERPARAMETER CONTROLS</span>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <label for="noise-slider">Label Noise Corruption Rate (η):</label>
+              <span id="noise-val" class="control-value tabular-nums">20%</span>
+            </div>
+            <input type="range" id="noise-slider" class="range-slider" min="0" max="50" value="20" step="5">
+            <div class="range-labels">
+              <span>0% (Clean)</span>
+              <span>25% (Moderate)</span>
+              <span>50% (Severe)</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Loss Formulation:</label>
+            <div class="loss-toggle-group">
+              <button class="loss-btn active" data-loss="ce">
+                <strong>Standard Cross-Entropy (CE)</strong>
+                <span class="loss-sub">Overfits to noisy labels</span>
+              </button>
+              <button class="loss-btn" data-loss="symmetric">
+                <strong>Symmetric Robust Loss</strong>
+                <span class="loss-sub">Resilient to corrupted labels</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="lab-metrics-box">
+            <div class="lab-metric">
+              <span class="lab-metric-title">Generalisation Gap</span>
+              <span id="metric-gen-gap" class="lab-metric-val tabular-nums danger">+18.4%</span>
+            </div>
+            <div class="lab-metric">
+              <span class="lab-metric-title">Test Accuracy</span>
+              <span id="metric-accuracy" class="lab-metric-val tabular-nums">76.2%</span>
+            </div>
+            <div class="lab-metric">
+              <span class="lab-metric-title">Loss Convergence</span>
+              <span id="metric-loss-val" class="lab-metric-val tabular-nums">0.428</span>
+            </div>
+          </div>
+
+          <div class="lab-actions-row">
+            <button id="btn-regenerate-data" class="cta-button secondary" style="width: 100%; justify-content: center">
+              <span>Reseed Data Distribution</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Canvas Visualizer -->
+        <div class="lab-canvas-card">
+          <div class="lab-canvas-header">
+            <span class="terminal-title">2D DECISION BOUNDARY & SAMPLE SPACE</span>
+            <div class="canvas-legend">
+              <span class="legend-item"><span class="legend-dot class-a"></span> Class 0</span>
+              <span class="legend-item"><span class="legend-dot class-b"></span> Class 1</span>
+              <span class="legend-item"><span class="legend-dot noisy"></span> Corrupted Label</span>
+            </div>
+          </div>
+          <div class="canvas-viewport">
+            <canvas id="loss-canvas" width="560" height="380"></canvas>
+          </div>
+          <div class="lab-canvas-footer">
+            <span id="lab-status-text">Observation: Standard CE draws erratic high-curvature boundaries trying to enclose noisy points.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         Interactive Remote Sensing Wipe Slider (AeroCloud-Net)
+         ====================================================================== -->
+    <section class="section-container" style="padding-top: 0">
+      <div class="satellite-wipe-card">
+        <div class="satellite-info">
+          <span class="section-eyebrow">AeroCloud-Net • Remote Sensing Vision</span>
+          <h3 style="font-size: 1.5rem; margin-bottom: 8px">Sentinel-1 SAR Microwave Penetration vs Cloud Occlusion</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: var(--space-md)">
+            Drag the comparison handle to reveal synthetic aperture radar (SAR) microwave ground reconstruction underneath heavy tropical monsoon clouds.
+          </p>
+          <div class="satellite-stats">
+            <div class="sat-stat">
+              <span class="sat-stat-num tabular-nums">31.4 dB</span>
+              <span class="sat-stat-label">PSNR Score</span>
+            </div>
+            <div class="sat-stat">
+              <span class="sat-stat-num tabular-nums">0.892</span>
+              <span class="sat-stat-label">SSIM Index</span>
+            </div>
+            <div class="sat-stat">
+              <span class="sat-stat-num">C-Band SAR</span>
+              <span class="sat-stat-label">Sensor Dual-Polarized</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="wipe-container" id="wipe-container">
+          <div class="wipe-image-under" id="wipe-sar">
+            <!-- Simulated High-Res Cleared Terrain Grid -->
+            <canvas id="sar-canvas" width="460" height="260"></canvas>
+            <span class="wipe-badge clear">SAR-Reconstructed Ground Truth</span>
+          </div>
+          <div class="wipe-image-over" id="wipe-cloud">
+            <!-- Simulated Cloud Cover Canvas -->
+            <canvas id="cloud-canvas" width="460" height="260"></canvas>
+            <span class="wipe-badge cloud">Optical Cloud Occlusion</span>
+          </div>
+          <input type="range" id="wipe-slider" class="wipe-range" min="0" max="100" value="50" aria-label="Satellite comparison slider">
+          <div class="wipe-divider" id="wipe-divider"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         Featured Work & Bento Grid
+         ====================================================================== -->
+    <section id="projects" class="section-container" aria-labelledby="projects-title">
+      <div class="section-header">
+        <span class="section-eyebrow">Proven Engineering & Research</span>
+        <h2 id="projects-title" class="section-title">Featured Work & Case Studies</h2>
+        <p class="section-desc">
+          Focused implementations spanning theoretical deep learning algorithms, physics-guided remote sensing reconstruction, and offline-sync full-stack systems.
+        </p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="filter-bar" role="tablist" aria-label="Project Categories">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+          All Projects <span class="filter-count" id="count-all">8</span>
+        </button>
+        <button class="filter-btn" data-filter="ml" role="tab" aria-selected="false">
+          ML & Research <span class="filter-count" id="count-ml">3</span>
+        </button>
+        <button class="filter-btn" data-filter="fullstack" role="tab" aria-selected="false">
+          Full-Stack Applications <span class="filter-count" id="count-fullstack">2</span>
+        </button>
+        <button class="filter-btn" data-filter="systems" role="tab" aria-selected="false">
+          Systems & Tooling <span class="filter-count" id="count-systems">3</span>
+        </button>
+      </div>
+
+      <!-- Projects Container -->
+      <div class="bento-grid" id="projects-grid">
+        <!-- Rendered via JavaScript from window.PORTFOLIO_DATA -->
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         Technical Competencies Matrix
+         ====================================================================== -->
+    <section id="skills" class="section-container" aria-labelledby="skills-title">
+      <div class="section-header">
+        <span class="section-eyebrow">Capabilities</span>
+        <h2 id="skills-title" class="section-title">Technical Competency Matrix</h2>
+        <p class="section-desc">
+          Curated tooling and foundational computer science disciplines applied in active production and research workflows.
+        </p>
+      </div>
+
+      <div class="skills-grid" id="skills-grid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         Milestones & Education Timeline
+         ====================================================================== -->
+    <section id="timeline" class="section-container" aria-labelledby="timeline-title">
+      <div class="section-header">
+        <span class="section-eyebrow">Experience & Track Record</span>
+        <h2 id="timeline-title" class="section-title">Milestones & Academic Journey</h2>
+        <p class="section-desc">
+          Key competitive achievements, campus initiatives, and research explorations.
+        </p>
+      </div>
+
+      <div class="timeline-container" id="timeline-list">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         Contact & Conversion
+         ====================================================================== -->
+    <section id="contact" class="section-container" aria-labelledby="contact-title">
+      <div class="contact-card">
+        <div class="contact-info">
+          <span class="section-eyebrow">Direct Contact</span>
+          <h2 id="contact-title" class="section-title" style="margin-bottom: var(--space-xs)">Let's Build Something High-Impact.</h2>
+          <p>
+            Whether you are discussing Software Engineering roles, Applied AI/ML Research internships, or technical collaborations, my inbox is always open.
+          </p>
+
+          <div class="contact-direct-links">
+            <button id="copy-email-btn" class="copy-email-btn" aria-label="Copy email address to clipboard">
+              <span id="email-text">vaibhavchavanpatil.dev@gmail.com</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+            <div style="display: flex; gap: var(--space-md); margin-top: var(--space-sm)">
+              <a href="https://github.com/VAIBHAV7848" target="_blank" rel="noopener noreferrer" class="cta-button secondary" style="flex: 1; justify-content: center">
+                <span>GitHub @VAIBHAV7848</span>
+              </a>
+              <a href="https://www.linkedin.com/in/vaibhav-chavanpatil-a047b035a/" target="_blank" rel="noopener noreferrer" class="cta-button secondary" style="flex: 1; justify-content: center">
+                <span>LinkedIn Profile</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <form id="contact-form" class="contact-form" onsubmit="return false;">
+          <div class="form-group">
+            <label for="form-name" class="form-label">Your Name</label>
+            <input type="text" id="form-name" class="form-input" placeholder="Alex Rivera" required>
+          </div>
+          <div class="form-group">
+            <label for="form-email" class="form-label">Email Address</label>
+            <input type="email" id="form-email" class="form-input" placeholder="alex@company.com" required>
+          </div>
+          <div class="form-group">
+            <label for="form-message" class="form-label">Project / Opportunity Brief</label>
+            <textarea id="form-message" class="form-textarea" placeholder="Describe the role or collaborative problem..." required></textarea>
+          </div>
+          <button type="submit" id="form-submit-btn" class="cta-button primary" style="justify-content: center; width: 100%">
+            <span>Send Direct Message</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Feedback Toast Notification -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    <span id="toast-message">Email copied to clipboard!</span>
+  </div>
+
+  <!-- Project Architecture Deep Dive Modal -->
+  <div id="project-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-project-title" hidden>
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-header-titles">
+          <span class="section-eyebrow" id="modal-project-category">SYSTEM ARCHITECTURE</span>
+          <h3 id="modal-project-title" class="modal-title">Project Title</h3>
+        </div>
+        <button id="modal-close-btn" class="icon-btn" aria-label="Close project details">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-section">
+          <h4 class="modal-subheading">Architectural Overview</h4>
+          <p id="modal-project-desc" class="modal-desc"></p>
+        </div>
+
+        <div class="modal-section">
+          <h4 class="modal-subheading">Data Flow & Engineering Blueprint</h4>
+          <div class="architecture-diagram" id="modal-architecture-diagram">
+            <!-- Rendered diagram flow -->
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h4 class="modal-subheading">Core Benchmark & Performance Results</h4>
+          <div class="modal-benchmarks" id="modal-benchmarks">
+            <!-- Benchmark bars -->
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h4 class="modal-subheading">Repository Quick Clone</h4>
+          <div class="clone-box">
+            <code id="modal-clone-cmd" class="clone-code">git clone https://github.com/VAIBHAV7848/...</code>
+            <button id="modal-copy-clone-btn" class="terminal-chip" style="margin-left: auto">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a id="modal-github-link" href="#" target="_blank" rel="noopener noreferrer" class="cta-button primary" style="width: 100%; justify-content: center">
+          <span>Open GitHub Repository</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div>
+        <span>© <span id="current-year">2026</span> Vaibhav Chavanpatil. Built with clean Vanilla Web Standards.</span>
+      </div>
+      <div>
+        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan)">0 Dependencies • Instant Load • WCAG 2.1 AA</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="projects-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
