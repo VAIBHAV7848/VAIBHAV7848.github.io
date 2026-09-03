@@ -2,426 +2,523 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-  <title>Vaibhav Chavanpatil | Full-Stack Developer & ML Researcher</title>
-  <meta name="description" content="Portfolio of Vaibhav Chavanpatil - 3rd Year CSE Student, Full-Stack Developer, and Deep Learning Researcher specializing in loss function theory, physics-guided satellite vision, and resilient web architectures.">
+  <title>VAIBHAV-OS v3.2 | Vaibhav Chavanpatil — Full-Stack & ML Workstation</title>
+  <meta name="description" content="VAIBHAV-OS v3.2 — Cybernetic Web Desktop Workstation for Vaibhav Chavanpatil. 3rd Year CSE Student, Full-Stack Developer, and Deep Learning Researcher.">
   <meta name="author" content="Vaibhav Chavanpatil">
-  <meta name="keywords" content="Vaibhav Chavanpatil, Full-Stack Developer, Machine Learning, Deep Learning Research, PyTorch, React, Node.js, Remote Sensing, CSE Portfolio">
+  <meta name="keywords" content="Vaibhav Chavanpatil, VAIBHAV-OS, Web OS, Developer Portfolio, Machine Learning Researcher, PyTorch, Full-Stack Developer, WebGL, Computer Science">
 
-  <!-- Open Graph / Social Sharing -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Vaibhav Chavanpatil | Full-Stack Developer & ML Researcher">
-  <meta property="og:description" content="Computer Science student engineering resilient software systems and deep learning models.">
+  <meta property="og:title" content="VAIBHAV-OS v3.2 | Vaibhav Chavanpatil">
+  <meta property="og:description" content="Explore an interactive cybernetic web desktop workstation featuring live ML research simulators, satellite radar, and systems architecture.">
   <meta property="og:url" content="https://github.com/VAIBHAV7848">
-  <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Fonts & Stylesheet -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <!-- Ambient Interactive Neural Mesh Canvas -->
+<body class="os-body">
+
+  <!-- Interactive Ambient Neural Grid Background Canvas -->
   <canvas id="neural-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
 
   <!-- ======================================================================
-       Site Header & Navigation
+       1. Top Menu Bar (macOS / CyberOS Hybrid)
        ====================================================================== -->
-  <header class="site-header" role="banner">
-    <div class="header-container">
-      <a href="#hero" class="brand-monogram" aria-label="Vaibhav Chavanpatil Home">
+  <header class="top-menu-bar" role="banner">
+    <div class="menu-bar-left">
+      <!-- Apple/VC Monogram Logo with System Menu Trigger -->
+      <div class="menu-item monogram-menu" id="system-menu-btn" tabindex="0" role="button" aria-haspopup="true" aria-label="System Menu">
         <span class="monogram-badge">VC</span>
-        <span>Vaibhav<span style="color: var(--accent-cyan)">.dev</span></span>
-      </a>
-
-      <nav class="nav" role="navigation" aria-label="Main Navigation">
-        <ul class="nav-links">
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#terminal" class="nav-link">CLI Sandbox</a></li>
-          <li><a href="#research-lab" class="nav-link">ML Lab</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#skills" class="nav-link">Skills</a></li>
-          <li><a href="#timeline" class="nav-link">Milestones</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <!-- Audio Synthesizer Toggle -->
-        <button id="audio-toggle-btn" class="icon-btn" aria-label="Toggle keyboard sound effects" title="Toggle Sound FX (Web Audio)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-          </svg>
-        </button>
-
-        <!-- Theme Toggle -->
-        <button id="theme-toggle-btn" class="icon-btn" aria-label="Toggle light or dark theme" title="Toggle Theme">
-          <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-        </button>
-
-        <a href="https://github.com/VAIBHAV7848" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub Profile" title="GitHub Profile">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-          </svg>
-        </a>
-
-        <a href="#contact" class="cta-button primary">Let's Connect</a>
+        <span class="menu-bold">VAIBHAV-OS</span>
       </div>
+
+      <div class="menu-item active-app-label" id="current-app-name">Finder</div>
+
+      <div class="menu-item menu-dropdown-trigger" data-action="open-about">About</div>
+      <div class="menu-item menu-dropdown-trigger" data-action="open-projects">Projects</div>
+      <div class="menu-item menu-dropdown-trigger" data-action="open-lab">ML Lab</div>
+      <div class="menu-item menu-dropdown-trigger" data-action="open-terminal">Terminal</div>
+      <div class="menu-item menu-dropdown-trigger" data-action="open-contact">Contact</div>
+    </div>
+
+    <div class="menu-bar-right">
+      <div class="status-item telemetry-pill">
+        <span class="hud-indicator live"></span>
+        <span>15.85°N, 74.50°E [BELGAUM]</span>
+      </div>
+
+      <div class="status-item ping-display" title="Network Latency">
+        <span style="color: var(--accent-cyan)">PING:</span>
+        <span id="hud-ping" class="tabular-nums">14ms</span>
+      </div>
+
+      <div class="status-item cpu-display" title="Simulated CPU Utilization">
+        <span style="color: var(--accent-emerald)">CPU:</span>
+        <span id="hud-cpu" class="tabular-nums">12%</span>
+      </div>
+
+      <!-- Sound FX Toggle -->
+      <button class="status-item icon-status-btn" id="audio-toggle-btn" title="Toggle Mechanical Sound FX" aria-label="Toggle Sound Effects">
+        <span id="sound-indicator">🔊 SFX ON</span>
+      </button>
+
+      <!-- Theme Switcher -->
+      <button class="status-item icon-status-btn" id="theme-toggle-btn" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
+        <svg id="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        </svg>
+      </button>
+
+      <!-- Real-time Clock -->
+      <div class="status-item clock-display" id="os-clock">Thu 20:45</div>
     </div>
   </header>
 
   <!-- ======================================================================
-       Hero Section
+       2. Desktop Workspace Environment
        ====================================================================== -->
-  <main id="main-content">
-    <section id="hero" class="hero-section" aria-labelledby="hero-title">
-      <div class="hero-container">
-        <div class="hero-content">
-          <!-- Cybernetic Research HUD Telemetry -->
-          <div class="hud-bar" role="status" aria-label="System Telemetry">
-            <span class="hud-item"><span class="hud-indicator live"></span>SYS: ONLINE</span>
-            <span class="hud-item">LOC: 15.85°N, 74.50°E (KA, IN)</span>
-            <span class="hud-item">FOCUS: ROBUST DL THEORY</span>
-            <span class="hud-item">PING: <span id="hud-ping" class="tabular-nums">14ms</span></span>
+  <main class="desktop-workspace" id="desktop-workspace">
+
+    <!-- Desktop Shortcut Grid -->
+    <div class="desktop-icons-container" role="region" aria-label="Desktop Applications">
+      <div class="desktop-shortcut" data-app="projects" tabindex="0" role="button">
+        <div class="shortcut-icon-wrapper">
+          <span class="shortcut-icon">📁</span>
+        </div>
+        <span class="shortcut-label">Projects.app</span>
+      </div>
+
+      <div class="desktop-shortcut" data-app="lab" tabindex="0" role="button">
+        <div class="shortcut-icon-wrapper">
+          <span class="shortcut-icon">🧠</span>
+        </div>
+        <span class="shortcut-label">ML_Research.app</span>
+      </div>
+
+      <div class="desktop-shortcut" data-app="sar" tabindex="0" role="button">
+        <div class="shortcut-icon-wrapper">
+          <span class="shortcut-icon">🛰️</span>
+        </div>
+        <span class="shortcut-label">AeroCloud_SAR.app</span>
+      </div>
+
+      <div class="desktop-shortcut" data-app="terminal" tabindex="0" role="button">
+        <div class="shortcut-icon-wrapper">
+          <span class="shortcut-icon">⚡</span>
+        </div>
+        <span class="shortcut-label">Terminal.app</span>
+      </div>
+
+      <div class="desktop-shortcut" data-app="skills" tabindex="0" role="button">
+        <div class="shortcut-icon-wrapper">
+          <span class="shortcut-icon">🛠️</span>
+        </div>
+        <span class="shortcut-label">Skills_Matrix.app</span>
+      </div>
+
+      <div class="desktop-shortcut" data-app="about" tabindex="0" role="button">
+        <div class="shortcut-icon-wrapper">
+          <span class="shortcut-icon">ℹ️</span>
+        </div>
+        <span class="shortcut-label">About_Vaibhav.sys</span>
+      </div>
+
+      <div class="desktop-shortcut" data-app="contact" tabindex="0" role="button">
+        <div class="shortcut-icon-wrapper">
+          <span class="shortcut-icon">✉️</span>
+        </div>
+        <span class="shortcut-label">Messenger.app</span>
+      </div>
+    </div>
+
+    <!-- ==================================================================
+         WINDOW 1: About_Vaibhav.sys (System Profiler & Identity)
+         ================================================================== -->
+    <section class="os-window" id="win-about" style="top: 55px; left: 140px; width: 580px; height: 470px;" aria-labelledby="win-about-title">
+      <div class="window-header">
+        <div class="window-controls">
+          <button class="win-btn win-close" title="Close" aria-label="Close window"></button>
+          <button class="win-btn win-minimize" title="Minimize" aria-label="Minimize window"></button>
+          <button class="win-btn win-maximize" title="Maximize / Restore" aria-label="Maximize window"></button>
+        </div>
+        <div class="window-title" id="win-about-title">
+          <span>ℹ️</span> About_Vaibhav.sys — System Profiler
+        </div>
+        <div class="window-header-extra"></div>
+      </div>
+
+      <div class="window-body">
+        <div class="about-hero-block">
+          <div class="avatar-radar-ring">
+            <div class="avatar-monogram">VC</div>
+            <div class="radar-sweep"></div>
           </div>
-
-          <div class="status-pill" role="status">
-            <span class="status-dot"></span>
-            <span>Available for SWE & ML Research Roles</span>
-          </div>
-
-          <h1 id="hero-title" class="hero-title">
-            Vaibhav Chavanpatil
-          </h1>
-
-          <p class="hero-tagline">
-            3rd Year CSE • Full-Stack Systems & Applied ML Researcher
-          </p>
-
-          <p class="hero-bio" id="about">
-            Undergraduate in Computer Science & Engineering combining theoretical machine learning research with robust full-stack software architecture. From formulating noise-resilient neural loss dynamics to building physics-guided satellite vision systems and offline-first SaaS platforms.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#research-lab" class="cta-button primary">
-              <span>Launch ML Lab</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            </a>
-            <a href="#projects" class="cta-button secondary">
-              <span>Featured Work</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="#terminal" class="cta-button secondary">
-              <span>Interactive CLI >_</span>
-            </a>
-          </div>
-
-          <div class="hero-metrics">
-            <div class="metric-card">
-              <span class="metric-value tabular-nums" id="metric-repos">29+</span>
-              <span class="metric-label">Repositories</span>
-              <span class="metric-detail">Codebases authored</span>
+          <div>
+            <div class="status-pill" style="margin-bottom: 6px">
+              <span class="status-dot"></span>
+              <span>Available for SWE & ML Research Roles</span>
             </div>
-            <div class="metric-card">
-              <span class="metric-value tabular-nums">3</span>
-              <span class="metric-label">Deep Learning</span>
-              <span class="metric-detail">Theory & Vision</span>
-            </div>
-            <div class="metric-card">
-              <span class="metric-value tabular-nums">6+</span>
-              <span class="metric-label">Full-Stack Apps</span>
-              <span class="metric-detail">Campus & Systems</span>
-            </div>
-            <div class="metric-card">
-              <span class="metric-value tabular-nums" id="metric-stars">15+</span>
-              <span class="metric-label">Stars & Impact</span>
-              <span class="metric-detail">Open Source</span>
-            </div>
+            <h2 class="about-name">Vaibhav Chavanpatil</h2>
+            <div class="about-role">3rd Year CSE • Full-Stack Systems & Applied ML Researcher</div>
           </div>
         </div>
 
-        <!-- Interactive Terminal Simulator -->
-        <div class="terminal-wrapper" id="terminal">
-          <div class="terminal-card" role="region" aria-label="Interactive Developer Terminal">
-            <div class="terminal-header">
-              <div class="terminal-controls">
-                <span class="terminal-circle close"></span>
-                <span class="terminal-circle minimize"></span>
-                <span class="terminal-circle maximize"></span>
-              </div>
-              <span class="terminal-title">vaibhav@portfolio-cli: ~ (bash)</span>
-              <span class="sound-indicator" id="sound-indicator" title="Audio feedback status">🔊 SFX ON</span>
-            </div>
+        <p class="about-bio">
+          Undergraduate in Computer Science & Engineering combining theoretical machine learning research with robust full-stack software architecture. Experienced in loss function formulation, physics-guided remote sensing reconstruction, and modern offline-sync web architectures.
+        </p>
 
-            <div class="terminal-body" id="terminal-body">
-              <div class="terminal-output">
-                <span class="terminal-line cyan">=== Vaibhav Chavanpatil CLI v2.4 ===</span><br>
-                <span class="terminal-line muted">Type <span class="terminal-line green">help</span> or click command chips below to inspect profile.</span><br><br>
-                <span class="terminal-line green">✓ Connected to GitHub: @VAIBHAV7848</span><br>
-                <span class="terminal-line muted">Try running '<span class="terminal-line cyan">matrix</span>', '<span class="terminal-line cyan">lab</span>', or '<span class="terminal-line cyan">projects</span>'.</span>
-              </div>
-            </div>
+        <div class="os-metrics-row">
+          <div class="os-metric-box">
+            <div class="os-metric-num" id="metric-repos">29+</div>
+            <div class="os-metric-label">Repositories</div>
+          </div>
+          <div class="os-metric-box">
+            <div class="os-metric-num">3</div>
+            <div class="os-metric-label">Deep Learning</div>
+          </div>
+          <div class="os-metric-box">
+            <div class="os-metric-num">6+</div>
+            <div class="os-metric-label">Full-Stack Systems</div>
+          </div>
+          <div class="os-metric-box">
+            <div class="os-metric-num" id="metric-stars">21+</div>
+            <div class="os-metric-label">GitHub Stars</div>
+          </div>
+        </div>
 
-            <div class="terminal-chips">
-              <span class="terminal-chip-label">Run:</span>
-              <button class="terminal-chip" data-cmd="bio">bio</button>
-              <button class="terminal-chip" data-cmd="skills">skills</button>
-              <button class="terminal-chip" data-cmd="projects">projects</button>
-              <button class="terminal-chip" data-cmd="lab">lab</button>
-              <button class="terminal-chip" data-cmd="matrix">matrix</button>
-              <button class="terminal-chip" data-cmd="contact">contact</button>
-              <button class="terminal-chip" data-cmd="clear">clear</button>
-            </div>
+        <div class="quick-launch-actions">
+          <button class="cta-button primary" onclick="window.OS.openWindow('projects')">
+            <span>Explore Projects Explorer</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button class="cta-button secondary" onclick="window.OS.openWindow('lab')">
+            <span>Launch ML Loss Lab</span>
+          </button>
+          <button class="cta-button secondary" onclick="window.OS.openWindow('terminal')">
+            <span>Open Terminal CLI</span>
+          </button>
+        </div>
+      </div>
+    </section>
 
-            <form id="terminal-form" class="terminal-prompt-line" style="padding: 10px 16px; background: var(--bg-secondary); border-top: 1px solid var(--border-subtle)">
-              <span class="terminal-prompt-user">guest@vaibhav</span><span class="terminal-prompt-symbol">:~$</span>
-              <input type="text" id="terminal-input" class="terminal-input" placeholder="Type command here (e.g., help, matrix, lab)..." autocomplete="off" spellcheck="false" aria-label="Terminal input prompt">
-            </form>
+    <!-- ==================================================================
+         WINDOW 2: Terminal.app (CLI Hacker Console)
+         ================================================================== -->
+    <section class="os-window" id="win-terminal" style="display: none; top: 110px; left: 420px; width: 660px; height: 480px;" aria-labelledby="win-terminal-title">
+      <div class="window-header">
+        <div class="window-controls">
+          <button class="win-btn win-close" title="Close"></button>
+          <button class="win-btn win-minimize" title="Minimize"></button>
+          <button class="win-btn win-maximize" title="Maximize / Restore"></button>
+        </div>
+        <div class="window-title" id="win-terminal-title">
+          <span>⚡</span> guest@vaibhav-os: ~ (zsh / bash)
+        </div>
+        <div class="window-header-extra">
+          <span class="terminal-badge">READY</span>
+        </div>
+      </div>
+
+      <div class="window-body terminal-window-body">
+        <div class="terminal-body-content" id="terminal-body">
+          <div class="terminal-output">
+            <span class="terminal-line cyan">=== VAIBHAV-OS Interactive Kernel v3.2 ===</span><br>
+            <span class="terminal-line green">✓ Terminal subsystem initialized. User: guest@vaibhav</span><br>
+            <span class="terminal-line muted">Type <span class="terminal-line green">help</span> or click command buttons below to run commands.</span><br>
+            <span class="terminal-line muted">Special commands: <span class="terminal-line cyan">neofetch</span>, <span class="terminal-line cyan">matrix</span>, <span class="terminal-line cyan">lab</span>, <span class="terminal-line cyan">projects</span>.</span>
+          </div>
+        </div>
+
+        <div class="terminal-chips">
+          <span class="terminal-chip-label">Run:</span>
+          <button class="terminal-chip" data-cmd="neofetch">neofetch</button>
+          <button class="terminal-chip" data-cmd="bio">bio</button>
+          <button class="terminal-chip" data-cmd="skills">skills</button>
+          <button class="terminal-chip" data-cmd="projects">projects</button>
+          <button class="terminal-chip" data-cmd="lab">lab</button>
+          <button class="terminal-chip" data-cmd="matrix">matrix</button>
+          <button class="terminal-chip" data-cmd="clear">clear</button>
+        </div>
+
+        <form id="terminal-form" class="terminal-prompt-line">
+          <span class="terminal-prompt-user">guest@vaibhav</span><span class="terminal-prompt-symbol">:~$</span>
+          <input type="text" id="terminal-input" class="terminal-input" placeholder="Type command (help, neofetch, matrix)..." autocomplete="off" spellcheck="false" aria-label="Terminal CLI command prompt">
+        </form>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         WINDOW 3: Projects_Explorer.app (macOS Finder-Style File Manager)
+         ================================================================== -->
+    <section class="os-window" id="win-projects" style="top: 75px; left: 360px; width: 840px; height: 530px;" aria-labelledby="win-projects-title">
+      <div class="window-header">
+        <div class="window-controls">
+          <button class="win-btn win-close" title="Close"></button>
+          <button class="win-btn win-minimize" title="Minimize"></button>
+          <button class="win-btn win-maximize" title="Maximize / Restore"></button>
+        </div>
+        <div class="window-title" id="win-projects-title">
+          <span>📁</span> Projects_Explorer — /Users/vaibhav/Repositories
+        </div>
+        <div class="window-header-extra">
+          <span class="finder-status-count" id="finder-repo-count">8 Items</span>
+        </div>
+      </div>
+
+      <div class="window-body finder-body">
+        <!-- Sidebar Navigation -->
+        <aside class="finder-sidebar">
+          <div class="sidebar-section-title">CATEGORIES</div>
+          <button class="sidebar-nav-item active" data-filter="all">
+            <span>🗂️</span> All Repositories
+          </button>
+          <button class="sidebar-nav-item" data-filter="ml">
+            <span>🧠</span> ML & Deep Learning
+          </button>
+          <button class="sidebar-nav-item" data-filter="fullstack">
+            <span>⚡</span> Full-Stack Systems
+          </button>
+          <button class="sidebar-nav-item" data-filter="systems">
+            <span>🛠️</span> Infrastructure & Tools
+          </button>
+
+          <div class="sidebar-section-title" style="margin-top: var(--space-md)">EXTERNAL</div>
+          <a href="https://github.com/VAIBHAV7848" target="_blank" rel="noopener noreferrer" class="sidebar-nav-item">
+            <span>🐙</span> GitHub @VAIBHAV7848
+          </a>
+          <a href="https://www.linkedin.com/in/vaibhav-chavanpatil-a047b035a/" target="_blank" rel="noopener noreferrer" class="sidebar-nav-item">
+            <span>💼</span> LinkedIn Profile
+          </a>
+        </aside>
+
+        <!-- Main Project Explorer Content -->
+        <div class="finder-main-pane">
+          <div class="finder-grid" id="finder-projects-grid">
+            <!-- Dynamically populated from window.PORTFOLIO_DATA -->
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ======================================================================
-         Interactive ML Research Lab (Show, Don't Just Tell)
-         ====================================================================== -->
-    <section id="research-lab" class="section-container" aria-labelledby="lab-title">
-      <div class="section-header">
-        <span class="section-eyebrow">Interactive Live Simulator</span>
-        <h2 id="lab-title" class="section-title">Deep Learning Lab: Loss Dynamics Under Label Noise</h2>
-        <p class="section-desc">
-          Live in-browser simulation demonstrating how noise corruption warps cross-entropy boundaries versus robust loss formulations. Move the noise slider to observe overfitting divergence in real time.
-        </p>
+    <!-- ==================================================================
+         WINDOW 4: ML_Research_Lab.app (Interactive Loss Dynamics Simulator)
+         ================================================================== -->
+    <section class="os-window" id="win-lab" style="display: none; top: 70px; left: 280px; width: 880px; height: 560px;" aria-labelledby="win-lab-title">
+      <div class="window-header">
+        <div class="window-controls">
+          <button class="win-btn win-close" title="Close"></button>
+          <button class="win-btn win-minimize" title="Minimize"></button>
+          <button class="win-btn win-maximize" title="Maximize / Restore"></button>
+        </div>
+        <div class="window-title" id="win-lab-title">
+          <span>🧠</span> ML_Research_Lab.app — Loss Dynamics Simulator [PyTorch Engine]
+        </div>
+        <div class="window-header-extra">
+          <span class="terminal-badge" style="color: var(--accent-emerald)">ACTIVE SIMULATION</span>
+        </div>
       </div>
 
-      <div class="lab-container">
-        <!-- Interactive Controls -->
-        <div class="lab-controls-panel">
-          <div class="lab-panel-header">
-            <span class="lab-indicator"></span>
-            <span>HYPERPARAMETER CONTROLS</span>
-          </div>
+      <div class="window-body lab-window-body">
+        <div class="lab-container">
+          <!-- Hyperparameter Controls -->
+          <div class="lab-controls-panel">
+            <div class="lab-panel-header">
+              <span class="lab-indicator"></span>
+              <span>HYPERPARAMETER CONTROLS</span>
+            </div>
 
-          <div class="control-group">
-            <div class="control-label-row">
-              <label for="noise-slider">Label Noise Corruption Rate (η):</label>
-              <span id="noise-val" class="control-value tabular-nums">20%</span>
+            <div class="control-group">
+              <div class="control-label-row">
+                <label for="noise-slider">Label Noise Rate (η):</label>
+                <span id="noise-val" class="control-value tabular-nums">20%</span>
+              </div>
+              <input type="range" id="noise-slider" class="range-slider" min="0" max="50" value="20" step="5">
+              <div class="range-labels">
+                <span>0% (Clean)</span>
+                <span>25% (Moderate)</span>
+                <span>50% (Severe)</span>
+              </div>
             </div>
-            <input type="range" id="noise-slider" class="range-slider" min="0" max="50" value="20" step="5">
-            <div class="range-labels">
-              <span>0% (Clean)</span>
-              <span>25% (Moderate)</span>
-              <span>50% (Severe)</span>
-            </div>
-          </div>
 
-          <div class="control-group">
-            <label class="control-label">Loss Formulation:</label>
-            <div class="loss-toggle-group">
-              <button class="loss-btn active" data-loss="ce">
-                <strong>Standard Cross-Entropy (CE)</strong>
-                <span class="loss-sub">Overfits to noisy labels</span>
-              </button>
-              <button class="loss-btn" data-loss="symmetric">
-                <strong>Symmetric Robust Loss</strong>
-                <span class="loss-sub">Resilient to corrupted labels</span>
-              </button>
+            <div class="control-group">
+              <label class="control-label">Loss Formulation:</label>
+              <div class="loss-toggle-group">
+                <button class="loss-btn active" data-loss="ce">
+                  <strong>Standard Cross-Entropy (CE)</strong>
+                  <span class="loss-sub">Overfits to noisy labels</span>
+                </button>
+                <button class="loss-btn" data-loss="symmetric">
+                  <strong>Symmetric Robust Loss</strong>
+                  <span class="loss-sub">Resilient to corrupted labels</span>
+                </button>
+              </div>
             </div>
-          </div>
 
-          <div class="lab-metrics-box">
-            <div class="lab-metric">
-              <span class="lab-metric-title">Generalisation Gap</span>
-              <span id="metric-gen-gap" class="lab-metric-val tabular-nums danger">+18.4%</span>
+            <div class="lab-metrics-box">
+              <div class="lab-metric">
+                <span class="lab-metric-title">Generalisation Gap</span>
+                <span id="metric-gen-gap" class="lab-metric-val tabular-nums danger">+21.0%</span>
+              </div>
+              <div class="lab-metric">
+                <span class="lab-metric-title">Test Accuracy</span>
+                <span id="metric-accuracy" class="lab-metric-val tabular-nums">76.0%</span>
+              </div>
+              <div class="lab-metric">
+                <span class="lab-metric-title">Loss Value</span>
+                <span id="metric-loss-val" class="lab-metric-val tabular-nums">0.380</span>
+              </div>
             </div>
-            <div class="lab-metric">
-              <span class="lab-metric-title">Test Accuracy</span>
-              <span id="metric-accuracy" class="lab-metric-val tabular-nums">76.2%</span>
-            </div>
-            <div class="lab-metric">
-              <span class="lab-metric-title">Loss Convergence</span>
-              <span id="metric-loss-val" class="lab-metric-val tabular-nums">0.428</span>
-            </div>
-          </div>
 
-          <div class="lab-actions-row">
             <button id="btn-regenerate-data" class="cta-button secondary" style="width: 100%; justify-content: center">
               <span>Reseed Data Distribution</span>
             </button>
           </div>
-        </div>
 
-        <!-- Live Canvas Visualizer -->
-        <div class="lab-canvas-card">
-          <div class="lab-canvas-header">
-            <span class="terminal-title">2D DECISION BOUNDARY & SAMPLE SPACE</span>
-            <div class="canvas-legend">
-              <span class="legend-item"><span class="legend-dot class-a"></span> Class 0</span>
-              <span class="legend-item"><span class="legend-dot class-b"></span> Class 1</span>
-              <span class="legend-item"><span class="legend-dot noisy"></span> Corrupted Label</span>
+          <!-- 2D Canvas Viewport -->
+          <div class="lab-canvas-card">
+            <div class="lab-canvas-header">
+              <span class="terminal-title">2D DECISION BOUNDARY SPACE</span>
+              <div class="canvas-legend">
+                <span class="legend-item"><span class="legend-dot class-a"></span> Class 0</span>
+                <span class="legend-item"><span class="legend-dot class-b"></span> Class 1</span>
+                <span class="legend-item"><span class="legend-dot noisy"></span> Corrupted</span>
+              </div>
             </div>
-          </div>
-          <div class="canvas-viewport">
-            <canvas id="loss-canvas" width="560" height="380"></canvas>
-          </div>
-          <div class="lab-canvas-footer">
-            <span id="lab-status-text">Observation: Standard CE draws erratic high-curvature boundaries trying to enclose noisy points.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================================================================
-         Interactive Remote Sensing Wipe Slider (AeroCloud-Net)
-         ====================================================================== -->
-    <section class="section-container" style="padding-top: 0">
-      <div class="satellite-wipe-card">
-        <div class="satellite-info">
-          <span class="section-eyebrow">AeroCloud-Net • Remote Sensing Vision</span>
-          <h3 style="font-size: 1.5rem; margin-bottom: 8px">Sentinel-1 SAR Microwave Penetration vs Cloud Occlusion</h3>
-          <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: var(--space-md)">
-            Drag the comparison handle to reveal synthetic aperture radar (SAR) microwave ground reconstruction underneath heavy tropical monsoon clouds.
-          </p>
-          <div class="satellite-stats">
-            <div class="sat-stat">
-              <span class="sat-stat-num tabular-nums">31.4 dB</span>
-              <span class="sat-stat-label">PSNR Score</span>
+            <div class="canvas-viewport">
+              <canvas id="loss-canvas" width="560" height="340"></canvas>
             </div>
-            <div class="sat-stat">
-              <span class="sat-stat-num tabular-nums">0.892</span>
-              <span class="sat-stat-label">SSIM Index</span>
-            </div>
-            <div class="sat-stat">
-              <span class="sat-stat-num">C-Band SAR</span>
-              <span class="sat-stat-label">Sensor Dual-Polarized</span>
+            <div class="lab-canvas-footer">
+              <span id="lab-status-text">Standard Cross-Entropy contorts its boundary to memorize label noise.</span>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="wipe-container" id="wipe-container">
-          <div class="wipe-image-under" id="wipe-sar">
-            <!-- Simulated High-Res Cleared Terrain Grid -->
-            <canvas id="sar-canvas" width="460" height="260"></canvas>
-            <span class="wipe-badge clear">SAR-Reconstructed Ground Truth</span>
+    <!-- ==================================================================
+         WINDOW 5: AeroCloud_SAR_Radar.app (Satellite Microwave Scanner)
+         ================================================================== -->
+    <section class="os-window" id="win-sar" style="display: none; top: 100px; left: 320px; width: 800px; height: 500px;" aria-labelledby="win-sar-title">
+      <div class="window-header">
+        <div class="window-controls">
+          <button class="win-btn win-close" title="Close"></button>
+          <button class="win-btn win-minimize" title="Minimize"></button>
+          <button class="win-btn win-maximize" title="Maximize / Restore"></button>
+        </div>
+        <div class="window-title" id="win-sar-title">
+          <span>🛰️</span> AeroCloud_SAR_Radar.app — Sentinel-1 Cloud Penetration
+        </div>
+        <div class="window-header-extra">
+          <span class="terminal-badge" style="color: var(--accent-cyan)">SAR C-BAND DUAL-POL</span>
+        </div>
+      </div>
+
+      <div class="window-body">
+        <div class="satellite-wipe-card" style="border: none; padding: 0; background: transparent">
+          <div class="satellite-info">
+            <span class="section-eyebrow">AeroCloud-Net • Remote Sensing Vision</span>
+            <h3 style="font-size: 1.35rem; margin-bottom: 6px">Microwave Penetration vs Monsoon Cloud Occlusion</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: var(--space-md)">
+              Drag the wipe handle to expose microwave synthetic aperture radar ground reconstruction beneath tropical clouds.
+            </p>
+            <div class="satellite-stats">
+              <div class="sat-stat">
+                <span class="sat-stat-num tabular-nums">31.4 dB</span>
+                <span class="sat-stat-label">PSNR Score</span>
+              </div>
+              <div class="sat-stat">
+                <span class="sat-stat-num tabular-nums">0.892</span>
+                <span class="sat-stat-label">SSIM Index</span>
+              </div>
+              <div class="sat-stat">
+                <span class="sat-stat-num">C-Band SAR</span>
+                <span class="sat-stat-label">Radar Penetration</span>
+              </div>
+            </div>
           </div>
-          <div class="wipe-image-over" id="wipe-cloud">
-            <!-- Simulated Cloud Cover Canvas -->
-            <canvas id="cloud-canvas" width="460" height="260"></canvas>
-            <span class="wipe-badge cloud">Optical Cloud Occlusion</span>
+
+          <div class="wipe-container" id="wipe-container" style="height: 260px">
+            <div class="wipe-image-under" id="wipe-sar-pane">
+              <canvas id="sar-canvas" width="460" height="260"></canvas>
+              <span class="wipe-badge clear">SAR Ground Reconstruct</span>
+            </div>
+            <div class="wipe-image-over" id="wipe-cloud-pane">
+              <canvas id="cloud-canvas" width="460" height="260"></canvas>
+              <span class="wipe-badge cloud">Monsoon Cloud Cover</span>
+            </div>
+            <input type="range" id="wipe-slider" class="wipe-range" min="0" max="100" value="50" aria-label="Satellite comparison slider">
+            <div class="wipe-divider" id="wipe-divider"></div>
           </div>
-          <input type="range" id="wipe-slider" class="wipe-range" min="0" max="100" value="50" aria-label="Satellite comparison slider">
-          <div class="wipe-divider" id="wipe-divider"></div>
         </div>
       </div>
     </section>
 
-    <!-- ======================================================================
-         Featured Work & Bento Grid
-         ====================================================================== -->
-    <section id="projects" class="section-container" aria-labelledby="projects-title">
-      <div class="section-header">
-        <span class="section-eyebrow">Proven Engineering & Research</span>
-        <h2 id="projects-title" class="section-title">Featured Work & Case Studies</h2>
-        <p class="section-desc">
-          Focused implementations spanning theoretical deep learning algorithms, physics-guided remote sensing reconstruction, and offline-sync full-stack systems.
-        </p>
+    <!-- ==================================================================
+         WINDOW 6: Skills_Matrix.app (System Capabilities)
+         ================================================================== -->
+    <section class="os-window" id="win-skills" style="display: none; top: 120px; left: 240px; width: 780px; height: 490px;" aria-labelledby="win-skills-title">
+      <div class="window-header">
+        <div class="window-controls">
+          <button class="win-btn win-close" title="Close"></button>
+          <button class="win-btn win-minimize" title="Minimize"></button>
+          <button class="win-btn win-maximize" title="Maximize / Restore"></button>
+        </div>
+        <div class="window-title" id="win-skills-title">
+          <span>🛠️</span> Skills_Matrix.app — Core Capabilities
+        </div>
+        <div class="window-header-extra"></div>
       </div>
 
-      <!-- Filter Controls -->
-      <div class="filter-bar" role="tablist" aria-label="Project Categories">
-        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
-          All Projects <span class="filter-count" id="count-all">8</span>
-        </button>
-        <button class="filter-btn" data-filter="ml" role="tab" aria-selected="false">
-          ML & Research <span class="filter-count" id="count-ml">3</span>
-        </button>
-        <button class="filter-btn" data-filter="fullstack" role="tab" aria-selected="false">
-          Full-Stack Applications <span class="filter-count" id="count-fullstack">2</span>
-        </button>
-        <button class="filter-btn" data-filter="systems" role="tab" aria-selected="false">
-          Systems & Tooling <span class="filter-count" id="count-systems">3</span>
-        </button>
-      </div>
-
-      <!-- Projects Container -->
-      <div class="bento-grid" id="projects-grid">
-        <!-- Rendered via JavaScript from window.PORTFOLIO_DATA -->
+      <div class="window-body">
+        <div class="skills-grid" id="skills-grid" style="padding: var(--space-md) 0">
+          <!-- Injected via JavaScript -->
+        </div>
       </div>
     </section>
 
-    <!-- ======================================================================
-         Technical Competencies Matrix
-         ====================================================================== -->
-    <section id="skills" class="section-container" aria-labelledby="skills-title">
-      <div class="section-header">
-        <span class="section-eyebrow">Capabilities</span>
-        <h2 id="skills-title" class="section-title">Technical Competency Matrix</h2>
-        <p class="section-desc">
-          Curated tooling and foundational computer science disciplines applied in active production and research workflows.
-        </p>
+    <!-- ==================================================================
+         WINDOW 7: Messenger.app (Direct Communication & Contact)
+         ================================================================== -->
+    <section class="os-window" id="win-contact" style="display: none; top: 90px; left: 360px; width: 680px; height: 500px;" aria-labelledby="win-contact-title">
+      <div class="window-header">
+        <div class="window-controls">
+          <button class="win-btn win-close" title="Close"></button>
+          <button class="win-btn win-minimize" title="Minimize"></button>
+          <button class="win-btn win-maximize" title="Maximize / Restore"></button>
+        </div>
+        <div class="window-title" id="win-contact-title">
+          <span>✉️</span> Messenger.app — Direct Channel
+        </div>
+        <div class="window-header-extra"></div>
       </div>
 
-      <div class="skills-grid" id="skills-grid">
-        <!-- Injected via JavaScript -->
-      </div>
-    </section>
-
-    <!-- ======================================================================
-         Milestones & Education Timeline
-         ====================================================================== -->
-    <section id="timeline" class="section-container" aria-labelledby="timeline-title">
-      <div class="section-header">
-        <span class="section-eyebrow">Experience & Track Record</span>
-        <h2 id="timeline-title" class="section-title">Milestones & Academic Journey</h2>
-        <p class="section-desc">
-          Key competitive achievements, campus initiatives, and research explorations.
-        </p>
-      </div>
-
-      <div class="timeline-container" id="timeline-list">
-        <!-- Injected via JavaScript -->
-      </div>
-    </section>
-
-    <!-- ======================================================================
-         Contact & Conversion
-         ====================================================================== -->
-    <section id="contact" class="section-container" aria-labelledby="contact-title">
-      <div class="contact-card">
-        <div class="contact-info">
-          <span class="section-eyebrow">Direct Contact</span>
-          <h2 id="contact-title" class="section-title" style="margin-bottom: var(--space-xs)">Let's Build Something High-Impact.</h2>
-          <p>
-            Whether you are discussing Software Engineering roles, Applied AI/ML Research internships, or technical collaborations, my inbox is always open.
+      <div class="window-body">
+        <div class="contact-info" style="margin-bottom: var(--space-md)">
+          <h3 style="font-size: 1.3rem; margin-bottom: 4px">Let's Build Something High-Impact.</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary)">
+            Open for Software Engineering roles, ML Research internships, and distributed systems collaborations.
           </p>
 
-          <div class="contact-direct-links">
+          <div style="display: flex; gap: var(--space-sm); margin-top: var(--space-sm); flex-wrap: wrap">
             <button id="copy-email-btn" class="copy-email-btn" aria-label="Copy email address to clipboard">
               <span id="email-text">vaibhavchavanpatil.dev@gmail.com</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
             </button>
-            <div style="display: flex; gap: var(--space-md); margin-top: var(--space-sm)">
-              <a href="https://github.com/VAIBHAV7848" target="_blank" rel="noopener noreferrer" class="cta-button secondary" style="flex: 1; justify-content: center">
-                <span>GitHub @VAIBHAV7848</span>
-              </a>
-              <a href="https://www.linkedin.com/in/vaibhav-chavanpatil-a047b035a/" target="_blank" rel="noopener noreferrer" class="cta-button secondary" style="flex: 1; justify-content: center">
-                <span>LinkedIn Profile</span>
-              </a>
-            </div>
+            <a href="https://github.com/VAIBHAV7848" target="_blank" rel="noopener noreferrer" class="cta-button secondary" style="font-size: 0.82rem">
+              <span>GitHub @VAIBHAV7848</span>
+            </a>
+            <a href="https://www.linkedin.com/in/vaibhav-chavanpatil-a047b035a/" target="_blank" rel="noopener noreferrer" class="cta-button secondary" style="font-size: 0.82rem">
+              <span>LinkedIn</span>
+            </a>
           </div>
         </div>
 
@@ -435,86 +532,120 @@
             <input type="email" id="form-email" class="form-input" placeholder="alex@company.com" required>
           </div>
           <div class="form-group">
-            <label for="form-message" class="form-label">Project / Opportunity Brief</label>
-            <textarea id="form-message" class="form-textarea" placeholder="Describe the role or collaborative problem..." required></textarea>
+            <label for="form-message" class="form-label">Message Brief</label>
+            <textarea id="form-message" class="form-textarea" placeholder="Describe the role or collaborative problem..." required style="min-height: 85px"></textarea>
           </div>
           <button type="submit" id="form-submit-btn" class="cta-button primary" style="justify-content: center; width: 100%">
-            <span>Send Direct Message</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            <span>Dispatch Message</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
           </button>
         </form>
       </div>
     </section>
-  </main>
 
-  <!-- Feedback Toast Notification -->
-  <div id="toast" class="toast" role="alert" aria-live="polite">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-    <span id="toast-message">Email copied to clipboard!</span>
-  </div>
-
-  <!-- Project Architecture Deep Dive Modal -->
-  <div id="project-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-project-title" hidden>
-    <div class="modal-card">
-      <div class="modal-header">
-        <div class="modal-header-titles">
-          <span class="section-eyebrow" id="modal-project-category">SYSTEM ARCHITECTURE</span>
-          <h3 id="modal-project-title" class="modal-title">Project Title</h3>
-        </div>
-        <button id="modal-close-btn" class="icon-btn" aria-label="Close project details">✕</button>
-      </div>
-
-      <div class="modal-body">
-        <div class="modal-section">
-          <h4 class="modal-subheading">Architectural Overview</h4>
-          <p id="modal-project-desc" class="modal-desc"></p>
+    <!-- Architecture Blueprint Inspector Modal -->
+    <div id="project-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-project-title" hidden>
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-header-titles">
+            <span class="section-eyebrow" id="modal-project-category">SYSTEM ARCHITECTURE</span>
+            <h3 id="modal-project-title" class="modal-title">Project Title</h3>
+          </div>
+          <button id="modal-close-btn" class="icon-btn" aria-label="Close project details">✕</button>
         </div>
 
-        <div class="modal-section">
-          <h4 class="modal-subheading">Data Flow & Engineering Blueprint</h4>
-          <div class="architecture-diagram" id="modal-architecture-diagram">
-            <!-- Rendered diagram flow -->
+        <div class="modal-body">
+          <div class="modal-section">
+            <h4 class="modal-subheading">Architectural Overview</h4>
+            <p id="modal-project-desc" class="modal-desc"></p>
+          </div>
+
+          <div class="modal-section">
+            <h4 class="modal-subheading">Data Flow & Engineering Blueprint</h4>
+            <div class="architecture-diagram" id="modal-architecture-diagram"></div>
+          </div>
+
+          <div class="modal-section">
+            <h4 class="modal-subheading">Core Benchmark & Performance Results</h4>
+            <div class="modal-benchmarks" id="modal-benchmarks"></div>
+          </div>
+
+          <div class="modal-section">
+            <h4 class="modal-subheading">Repository Quick Clone</h4>
+            <div class="clone-box">
+              <code id="modal-clone-cmd" class="clone-code">git clone https://github.com/VAIBHAV7848/...</code>
+              <button id="modal-copy-clone-btn" class="terminal-chip" style="margin-left: auto">Copy</button>
+            </div>
           </div>
         </div>
 
-        <div class="modal-section">
-          <h4 class="modal-subheading">Core Benchmark & Performance Results</h4>
-          <div class="modal-benchmarks" id="modal-benchmarks">
-            <!-- Benchmark bars -->
-          </div>
+        <div class="modal-footer">
+          <a id="modal-github-link" href="#" target="_blank" rel="noopener noreferrer" class="cta-button primary" style="width: 100%; justify-content: center">
+            <span>Open GitHub Repository</span>
+          </a>
         </div>
-
-        <div class="modal-section">
-          <h4 class="modal-subheading">Repository Quick Clone</h4>
-          <div class="clone-box">
-            <code id="modal-clone-cmd" class="clone-code">git clone https://github.com/VAIBHAV7848/...</code>
-            <button id="modal-copy-clone-btn" class="terminal-chip" style="margin-left: auto">Copy</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-footer">
-        <a id="modal-github-link" href="#" target="_blank" rel="noopener noreferrer" class="cta-button primary" style="width: 100%; justify-content: center">
-          <span>Open GitHub Repository</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-          </svg>
-        </a>
       </div>
     </div>
-  </div>
 
-  <!-- Site Footer -->
-  <footer class="site-footer">
-    <div class="footer-container">
-      <div>
-        <span>© <span id="current-year">2026</span> Vaibhav Chavanpatil. Built with clean Vanilla Web Standards.</span>
+  </main>
+
+  <!-- ======================================================================
+       3. macOS-Style Floating Dock
+       ====================================================================== -->
+  <footer class="floating-dock-container" role="navigation" aria-label="Application Dock">
+    <div class="dock-backdrop">
+      <div class="dock-item" data-app="about" title="About Vaibhav (System Profiler)" tabindex="0">
+        <span class="dock-icon">ℹ️</span>
+        <span class="dock-dot" id="dot-about"></span>
       </div>
-      <div>
-        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan)">0 Dependencies • Instant Load • WCAG 2.1 AA</span>
+
+      <div class="dock-item active" data-app="projects" title="Projects Explorer" tabindex="0">
+        <span class="dock-icon">📁</span>
+        <span class="dock-dot" id="dot-projects"></span>
+      </div>
+
+      <div class="dock-item active" data-app="terminal" title="Terminal Console" tabindex="0">
+        <span class="dock-icon">⚡</span>
+        <span class="dock-dot" id="dot-terminal"></span>
+      </div>
+
+      <div class="dock-item" data-app="lab" title="ML Loss Dynamics Simulator" tabindex="0">
+        <span class="dock-icon">🧠</span>
+        <span class="dock-dot" id="dot-lab"></span>
+      </div>
+
+      <div class="dock-item" data-app="sar" title="AeroCloud SAR Radar" tabindex="0">
+        <span class="dock-icon">🛰️</span>
+        <span class="dock-dot" id="dot-sar"></span>
+      </div>
+
+      <div class="dock-item" data-app="skills" title="Skills Matrix" tabindex="0">
+        <span class="dock-icon">🛠️</span>
+        <span class="dock-dot" id="dot-skills"></span>
+      </div>
+
+      <div class="dock-separator"></div>
+
+      <a href="https://github.com/VAIBHAV7848" target="_blank" rel="noopener noreferrer" class="dock-item" title="GitHub Profile">
+        <span class="dock-icon">🐙</span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/vaibhav-chavanpatil-a047b035a/" target="_blank" rel="noopener noreferrer" class="dock-item" title="LinkedIn Profile">
+        <span class="dock-icon">💼</span>
+      </a>
+
+      <div class="dock-item" data-app="contact" title="Direct Messenger" tabindex="0">
+        <span class="dock-icon">✉️</span>
+        <span class="dock-dot" id="dot-contact"></span>
       </div>
     </div>
   </footer>
+
+  <!-- Toast Notification Feedback -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    <span id="toast-message">Action successful</span>
+  </div>
 
   <!-- Scripts -->
   <script src="projects-data.js"></script>
