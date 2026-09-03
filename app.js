@@ -1,21 +1,24 @@
 /**
  * app.js
- * VAIBHAV-OS v3.2 — Web Desktop Operating System Engine
+ * VAIBHAV-OS v3.2 & VAIBHAV-MOBILE OS
  * 
  * Subsystems:
  * 1. Window Manager (Drag, Z-Index focus, Minimize, Maximize, Close)
- * 2. Web Audio API Mechanical Sound Synthesizer
- * 3. Top Menu Bar & Telemetry Controller
- * 4. macOS-Style Magnification Dock
- * 5. Interactive Terminal with Neofetch & Matrix Rain
- * 6. Interactive Deep Learning Lab Simulator
- * 7. Interactive Satellite SAR Cloud Penetration Scanner
- * 8. Projects Explorer File Manager
+ * 2. Mobile OS Controller (Home Screen, Dynamic Island, Home Indicator)
+ * 3. Desktop Context Menu & System Dropdown Menu
+ * 4. Fullscreen Matrix Screensaver Lock Engine
+ * 5. Web Audio API Mechanical Sound Synthesizer
+ * 6. Interactive Terminal with Neofetch & Matrix Rain
+ * 7. Interactive Deep Learning Lab Simulator
+ * 8. Interactive Satellite SAR Cloud Penetration Scanner
+ * 9. Projects Explorer File Manager
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   const data = window.PORTFOLIO_DATA;
   if (!data) return;
+
+  const isMobile = window.innerWidth <= 768;
 
   // ========================================================================
   // 0. Ambient Interactive Neural Particle Mesh (60 FPS Canvas)
@@ -184,11 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================================
-  // 2. Window Manager Subsystem
+  // 2. Window Manager & Mobile OS Controller
   // ========================================================================
   let topZ = 100;
   const windows = document.querySelectorAll('.os-window');
   const currentAppLabel = document.getElementById('current-app-name');
+  const mobileHomeScreen = document.getElementById('mobile-home-screen');
 
   const appNameMap = {
     'about': 'About Vaibhav',
@@ -212,6 +216,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function checkMobileHomeVisibility() {
+    if (window.innerWidth <= 768 && mobileHomeScreen) {
+      let anyVisible = false;
+      windows.forEach(w => {
+        if (w.style.display !== 'none' && !w.classList.contains('minimized')) {
+          anyVisible = true;
+        }
+      });
+      mobileHomeScreen.style.display = anyVisible ? 'none' : 'flex';
+    }
+  }
+
   function openWindow(appId) {
     const win = document.getElementById(`win-${appId}`);
     if (!win) return;
@@ -226,6 +242,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const dockItem = document.querySelector(`.dock-item[data-app="${appId}"]`);
     if (dot) dot.style.backgroundColor = 'var(--accent-cyan)';
     if (dockItem) dockItem.classList.add('running');
+
+    checkMobileHomeVisibility();
   }
 
   function closeWindow(win) {
@@ -236,11 +254,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const dockItem = document.querySelector(`.dock-item[data-app="${appId}"]`);
     if (dot) dot.style.backgroundColor = 'transparent';
     if (dockItem) dockItem.classList.remove('running');
+
+    checkMobileHomeVisibility();
   }
 
   function minimizeWindow(win) {
     playSound('click', 1400);
     win.classList.add('minimized');
+    checkMobileHomeVisibility();
   }
 
   function toggleMaximize(win) {
@@ -248,16 +269,15 @@ document.addEventListener('DOMContentLoaded', () => {
     win.classList.toggle('maximized');
   }
 
-  // Expose OS Window functions globally for inline handlers
+  // Global OS methods
   window.OS = {
     openWindow,
     closeWindow,
     bringToFront
   };
 
-  // Window Drag Mechanics
+  // Window Mechanics & Controls
   windows.forEach(win => {
-    // Focus on click
     win.addEventListener('mousedown', () => bringToFront(win));
 
     const header = win.querySelector('.window-header');
@@ -288,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       header.addEventListener('mousedown', (e) => {
         if (e.target.classList.contains('win-btn')) return;
-        if (win.classList.contains('maximized')) return; // Disable drag if maximized
+        if (win.classList.contains('maximized')) return;
 
         isDragging = true;
         bringToFront(win);
@@ -298,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const rect = win.getBoundingClientRect();
         initLeft = rect.left;
-        initTop = rect.top - 34; // Relative to workspace
+        initTop = rect.top - 34;
 
         document.body.style.cursor = 'grabbing';
       });
@@ -335,6 +355,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Mobile App Squircle Clicks
+  const mobileAppItems = document.querySelectorAll('.mobile-app-item[data-app]');
+  mobileAppItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const app = item.getAttribute('data-app');
+      if (app) openWindow(app);
+    });
+  });
+
   // Dock Items Click
   const dockItems = document.querySelectorAll('.dock-item[data-app]');
   dockItems.forEach(item => {
@@ -355,9 +384,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Top Menu Actions
   const sysMenuBtn = document.getElementById('system-menu-btn');
-  if (sysMenuBtn) {
-    sysMenuBtn.addEventListener('click', () => {
-      openWindow('about');
+  const sysDropdown = document.getElementById('system-dropdown');
+  if (sysMenuBtn && sysDropdown) {
+    sysMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      playSound('click', 1900);
+      sysDropdown.hidden = !sysDropdown.hidden;
     });
   }
 
@@ -372,22 +404,144 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Default Open Windows on launch
-  openWindow('about');
-  openWindow('projects');
+  // Right-Click Desktop Context Menu
+  const ctxMenu = document.getElementById('desktop-context-menu');
+  const desktopWorkspace = document.getElementById('desktop-workspace');
+
+  if (desktopWorkspace && ctxMenu) {
+    desktopWorkspace.addEventListener('contextmenu', (e) => {
+      // Only show if clicking empty desktop background
+      if (e.target.closest('.os-window') || e.target.closest('.desktop-shortcut')) return;
+
+      e.preventDefault();
+      playSound('click', 1500);
+      ctxMenu.style.top = `${e.clientY}px`;
+      ctxMenu.style.left = `${e.clientX}px`;
+      ctxMenu.hidden = false;
+    });
+  }
+
+  // Dismiss dropdowns on document click
+  window.addEventListener('click', () => {
+    if (sysDropdown) sysDropdown.hidden = true;
+    if (ctxMenu) ctxMenu.hidden = true;
+  });
+
+  // Screensaver / Lock Screen
+  const screensaver = document.getElementById('matrix-screensaver');
+  const screensaverCanvas = document.getElementById('screensaver-canvas');
+  let screensaverActive = false;
+  let matrixAnimId = null;
+
+  function startScreensaver() {
+    if (!screensaver || !screensaverCanvas) return;
+    playSound('beep', 800);
+    screensaver.hidden = false;
+    screensaverActive = true;
+
+    const ctx = screensaverCanvas.getContext('2d');
+    screensaverCanvas.width = window.innerWidth;
+    screensaverCanvas.height = window.innerHeight;
+
+    const columns = Math.floor(screensaverCanvas.width / 18);
+    const drops = Array(columns).fill(1);
+    const chars = "0101010101VAIBHAV7848CHAVANPATILΩλ∇∂∫≈≠≤≥∑";
+
+    function drawMatrixRain() {
+      if (!screensaverActive) return;
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.07)';
+      ctx.fillRect(0, 0, screensaverCanvas.width, screensaverCanvas.height);
+
+      ctx.fillStyle = '#10b981';
+      ctx.font = '14px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * 18, drops[i] * 18);
+
+        if (drops[i] * 18 > screensaverCanvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+      matrixAnimId = requestAnimationFrame(drawMatrixRain);
+    }
+    drawMatrixRain();
+  }
+
+  function stopScreensaver() {
+    if (!screensaverActive) return;
+    playSound('beep', 1200);
+    screensaverActive = false;
+    if (matrixAnimId) cancelAnimationFrame(matrixAnimId);
+    screensaver.hidden = true;
+  }
+
+  const menuLock = document.getElementById('menu-lock-matrix');
+  const ctxLock = document.getElementById('ctx-lock-matrix');
+  if (menuLock) menuLock.addEventListener('click', startScreensaver);
+  if (ctxLock) ctxLock.addEventListener('click', startScreensaver);
+
+  if (screensaver) {
+    screensaver.addEventListener('click', stopScreensaver);
+    window.addEventListener('keydown', () => {
+      if (screensaverActive) stopScreensaver();
+    });
+  }
+
+  const menuRestart = document.getElementById('menu-restart-os');
+  if (menuRestart) {
+    menuRestart.addEventListener('click', () => {
+      window.location.reload();
+    });
+  }
+
+  // Dynamic Island Click
+  const dynamicIsland = document.getElementById('dynamic-island');
+  const islandText = document.getElementById('island-text');
+  if (dynamicIsland && islandText) {
+    const messages = [
+      'SWE & ML Available',
+      'Belgaum • 15.85°N',
+      '29+ Repos • PyTorch',
+      'Tap to Explore Apps'
+    ];
+    let msgIdx = 0;
+    dynamicIsland.addEventListener('click', () => {
+      playSound('beep', 900);
+      msgIdx = (msgIdx + 1) % messages.length;
+      islandText.textContent = messages[msgIdx];
+    });
+  }
+
+  // Default Open Windows
+  if (!isMobile) {
+    openWindow('about');
+    openWindow('projects');
+  } else {
+    // On mobile, start cleanly on the Phone Home Screen!
+    windows.forEach(w => {
+      w.style.display = 'none';
+      w.classList.remove('active');
+    });
+    checkMobileHomeVisibility();
+  }
 
   // ========================================================================
   // 3. Top Menu Bar Telemetry (Clock, Ping, CPU)
   // ========================================================================
   const clockEl = document.getElementById('os-clock');
+  const mobileClockEl = document.getElementById('mobile-clock');
+
   function updateClock() {
-    if (!clockEl) return;
     const now = new Date();
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const d = days[now.getDay()];
     const h = String(now.getHours()).padStart(2, '0');
     const m = String(now.getMinutes()).padStart(2, '0');
-    clockEl.textContent = `${d} ${h}:${m}`;
+
+    if (clockEl) clockEl.textContent = `${d} ${h}:${m}`;
+    if (mobileClockEl) mobileClockEl.textContent = `${h}:${m}`;
   }
   updateClock();
   setInterval(updateClock, 10000);

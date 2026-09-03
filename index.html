@@ -2,18 +2,18 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
   <title>VAIBHAV-OS v3.2 | Vaibhav Chavanpatil — Full-Stack & ML Workstation</title>
-  <meta name="description" content="VAIBHAV-OS v3.2 — Cybernetic Web Desktop Workstation for Vaibhav Chavanpatil. 3rd Year CSE Student, Full-Stack Developer, and Deep Learning Researcher.">
+  <meta name="description" content="VAIBHAV-OS v3.2 — Cybernetic Web Desktop Workstation & Mobile OS for Vaibhav Chavanpatil. 3rd Year CSE Student, Full-Stack Developer, and Deep Learning Researcher.">
   <meta name="author" content="Vaibhav Chavanpatil">
-  <meta name="keywords" content="Vaibhav Chavanpatil, VAIBHAV-OS, Web OS, Developer Portfolio, Machine Learning Researcher, PyTorch, Full-Stack Developer, WebGL, Computer Science">
+  <meta name="keywords" content="Vaibhav Chavanpatil, VAIBHAV-OS, Web OS, Mobile OS, Developer Portfolio, Machine Learning Researcher, PyTorch, Full-Stack Developer, WebGL, Computer Science">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="VAIBHAV-OS v3.2 | Vaibhav Chavanpatil">
-  <meta property="og:description" content="Explore an interactive cybernetic web desktop workstation featuring live ML research simulators, satellite radar, and systems architecture.">
+  <meta property="og:description" content="Explore an interactive cybernetic web desktop workstation and mobile OS featuring live ML research simulators, satellite radar, and systems architecture.">
   <meta property="og:url" content="https://github.com/VAIBHAV7848">
 
   <!-- Fonts -->
@@ -28,11 +28,40 @@
   <canvas id="neural-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
 
   <!-- ======================================================================
-       1. Top Menu Bar (macOS / CyberOS Hybrid)
+       0. Mobile Status Bar & Dynamic Island (Shown on Mobile < 768px)
+       ====================================================================== -->
+  <div class="mobile-status-bar" id="mobile-status-bar">
+    <div class="mobile-status-left">
+      <span id="mobile-clock" class="mobile-clock">9:41</span>
+    </div>
+
+    <!-- Dynamic Island Pill -->
+    <div class="dynamic-island" id="dynamic-island" tabindex="0" role="button" aria-label="Dynamic Island Status">
+      <div class="island-content">
+        <span class="island-dot"></span>
+        <span class="island-text" id="island-text">SWE & ML Available</span>
+      </div>
+    </div>
+
+    <div class="mobile-status-right">
+      <span class="mobile-signal">5G</span>
+      <!-- WiFi Icon -->
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4zm0 3.5c3.6 0 6.9 1.4 9.3 3.8L12 19.3 2.7 11.3C5.1 8.9 8.4 7.5 12 7.5z"/>
+      </svg>
+      <!-- Battery Icon -->
+      <div class="mobile-battery" title="Battery 98%">
+        <div class="battery-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       1. Top Menu Bar (macOS / CyberOS Desktop)
        ====================================================================== -->
   <header class="top-menu-bar" role="banner">
     <div class="menu-bar-left">
-      <!-- Apple/VC Monogram Logo with System Menu Trigger -->
+      <!-- Apple/VC Monogram Logo with Dropdown Trigger -->
       <div class="menu-item monogram-menu" id="system-menu-btn" tabindex="0" role="button" aria-haspopup="true" aria-label="System Menu">
         <span class="monogram-badge">VC</span>
         <span class="menu-bold">VAIBHAV-OS</span>
@@ -83,12 +112,133 @@
     </div>
   </header>
 
+  <!-- Apple/VC System Dropdown Menu -->
+  <div class="system-dropdown" id="system-dropdown" hidden>
+    <div class="dropdown-item" onclick="window.OS.openWindow('about'); document.getElementById('system-dropdown').hidden = true;">
+      <span>ℹ️</span> About This Workstation
+    </div>
+    <div class="dropdown-separator"></div>
+    <div class="dropdown-item" onclick="window.OS.openWindow('projects'); document.getElementById('system-dropdown').hidden = true;">
+      <span>📁</span> Open Projects Explorer
+    </div>
+    <div class="dropdown-item" onclick="window.OS.openWindow('lab'); document.getElementById('system-dropdown').hidden = true;">
+      <span>🧠</span> Open ML Loss Lab
+    </div>
+    <div class="dropdown-item" onclick="window.OS.openWindow('terminal'); document.getElementById('system-dropdown').hidden = true;">
+      <span>⚡</span> Open Terminal Console
+    </div>
+    <div class="dropdown-separator"></div>
+    <div class="dropdown-item" id="menu-lock-matrix">
+      <span>🌌</span> Matrix Screensaver Lock
+    </div>
+    <div class="dropdown-item" id="menu-restart-os">
+      <span>🔄</span> Restart Workstation
+    </div>
+  </div>
+
+  <!-- Desktop Right-Click Context Menu -->
+  <div class="context-menu" id="desktop-context-menu" hidden>
+    <div class="context-item" onclick="window.OS.openWindow('terminal')">
+      <span>⚡</span> New Terminal Window
+    </div>
+    <div class="context-item" onclick="window.OS.openWindow('lab')">
+      <span>🧠</span> Launch ML Research Lab
+    </div>
+    <div class="context-item" onclick="window.OS.openWindow('projects')">
+      <span>📁</span> Open Projects Explorer
+    </div>
+    <div class="context-item" onclick="window.OS.openWindow('sar')">
+      <span>🛰️</span> Open AeroCloud SAR Radar
+    </div>
+    <div class="context-separator"></div>
+    <div class="context-item" id="ctx-lock-matrix">
+      <span>🌌</span> Matrix Rain Mode
+    </div>
+    <div class="context-item" onclick="window.location.reload()">
+      <span>🔄</span> Refresh Desktop
+    </div>
+  </div>
+
+  <!-- Fullscreen Matrix Screensaver / Lock Screen -->
+  <div class="matrix-screensaver" id="matrix-screensaver" hidden>
+    <canvas id="screensaver-canvas"></canvas>
+    <div class="screensaver-overlay">
+      <div class="screensaver-monogram">VC</div>
+      <h2 class="screensaver-title">VAIBHAV-OS LOCKED</h2>
+      <p class="screensaver-sub">Move mouse or press any key to unlock workstation</p>
+    </div>
+  </div>
+
   <!-- ======================================================================
-       2. Desktop Workspace Environment
+       2. Desktop Workspace & Mobile Home Screen Container
        ====================================================================== -->
   <main class="desktop-workspace" id="desktop-workspace">
 
-    <!-- Desktop Shortcut Grid -->
+    <!-- Mobile Home Screen (Visible only on Mobile < 768px when all apps closed) -->
+    <div class="mobile-home-screen" id="mobile-home-screen">
+      <!-- Mobile Hero Widget -->
+      <div class="mobile-widget-card">
+        <div class="widget-top">
+          <div class="avatar-monogram small">VC</div>
+          <div>
+            <div class="widget-name">Vaibhav Chavanpatil</div>
+            <div class="widget-status">3rd Year CSE • Applied ML & Full-Stack</div>
+          </div>
+        </div>
+        <div class="widget-metrics">
+          <div class="widget-metric">
+            <span class="widget-num">29+</span>
+            <span class="widget-label">Repos</span>
+          </div>
+          <div class="widget-metric">
+            <span class="widget-num">14ms</span>
+            <span class="widget-label">Ping</span>
+          </div>
+          <div class="widget-metric">
+            <span class="widget-num">15.85°N</span>
+            <span class="widget-label">Belgaum</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile App Grid (iOS Squircle Grid) -->
+      <div class="mobile-apps-grid">
+        <div class="mobile-app-item" data-app="projects">
+          <div class="squircle-icon folder">📁</div>
+          <span class="mobile-app-label">Projects</span>
+        </div>
+        <div class="mobile-app-item" data-app="lab">
+          <div class="squircle-icon brain">🧠</div>
+          <span class="mobile-app-label">ML Lab</span>
+        </div>
+        <div class="mobile-app-item" data-app="sar">
+          <div class="squircle-icon radar">🛰️</div>
+          <span class="mobile-app-label">SAR Radar</span>
+        </div>
+        <div class="mobile-app-item" data-app="terminal">
+          <div class="squircle-icon term">⚡</div>
+          <span class="mobile-app-label">Terminal</span>
+        </div>
+        <div class="mobile-app-item" data-app="skills">
+          <div class="squircle-icon tools">🛠️</div>
+          <span class="mobile-app-label">Skills</span>
+        </div>
+        <div class="mobile-app-item" data-app="about">
+          <div class="squircle-icon info">ℹ️</div>
+          <span class="mobile-app-label">About</span>
+        </div>
+        <div class="mobile-app-item" data-app="contact">
+          <div class="squircle-icon mail">✉️</div>
+          <span class="mobile-app-label">Messenger</span>
+        </div>
+        <a href="https://github.com/VAIBHAV7848" target="_blank" rel="noopener noreferrer" class="mobile-app-item">
+          <div class="squircle-icon github">🐙</div>
+          <span class="mobile-app-label">GitHub</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Desktop Shortcut Grid (Desktop View Only) -->
     <div class="desktop-icons-container" role="region" aria-label="Desktop Applications">
       <div class="desktop-shortcut" data-app="projects" tabindex="0" role="button">
         <div class="shortcut-icon-wrapper">
@@ -144,6 +294,13 @@
          WINDOW 1: About_Vaibhav.sys (System Profiler & Identity)
          ================================================================== -->
     <section class="os-window" id="win-about" style="top: 55px; left: 140px; width: 580px; height: 470px;" aria-labelledby="win-about-title">
+      <!-- Mobile Native App Bar -->
+      <div class="mobile-app-bar">
+        <button class="mobile-back-btn" onclick="window.OS.closeWindow(document.getElementById('win-about'))">‹ Home</button>
+        <span class="mobile-bar-title">About Vaibhav</span>
+        <div style="width: 50px"></div>
+      </div>
+
       <div class="window-header">
         <div class="window-controls">
           <button class="win-btn win-close" title="Close" aria-label="Close window"></button>
@@ -208,12 +365,22 @@
           </button>
         </div>
       </div>
+
+      <!-- Mobile Home Bar Indicator -->
+      <div class="mobile-home-indicator" onclick="window.OS.closeWindow(document.getElementById('win-about'))"></div>
     </section>
 
     <!-- ==================================================================
          WINDOW 2: Terminal.app (CLI Hacker Console)
          ================================================================== -->
     <section class="os-window" id="win-terminal" style="display: none; top: 110px; left: 420px; width: 660px; height: 480px;" aria-labelledby="win-terminal-title">
+      <!-- Mobile Native App Bar -->
+      <div class="mobile-app-bar">
+        <button class="mobile-back-btn" onclick="window.OS.closeWindow(document.getElementById('win-terminal'))">‹ Home</button>
+        <span class="mobile-bar-title">Terminal Console</span>
+        <div style="width: 50px"></div>
+      </div>
+
       <div class="window-header">
         <div class="window-controls">
           <button class="win-btn win-close" title="Close"></button>
@@ -254,12 +421,21 @@
           <input type="text" id="terminal-input" class="terminal-input" placeholder="Type command (help, neofetch, matrix)..." autocomplete="off" spellcheck="false" aria-label="Terminal CLI command prompt">
         </form>
       </div>
+
+      <div class="mobile-home-indicator" onclick="window.OS.closeWindow(document.getElementById('win-terminal'))"></div>
     </section>
 
     <!-- ==================================================================
          WINDOW 3: Projects_Explorer.app (macOS Finder-Style File Manager)
          ================================================================== -->
     <section class="os-window" id="win-projects" style="top: 75px; left: 360px; width: 840px; height: 530px;" aria-labelledby="win-projects-title">
+      <!-- Mobile Native App Bar -->
+      <div class="mobile-app-bar">
+        <button class="mobile-back-btn" onclick="window.OS.closeWindow(document.getElementById('win-projects'))">‹ Home</button>
+        <span class="mobile-bar-title">Projects Explorer</span>
+        <div style="width: 50px"></div>
+      </div>
+
       <div class="window-header">
         <div class="window-controls">
           <button class="win-btn win-close" title="Close"></button>
@@ -307,12 +483,21 @@
           </div>
         </div>
       </div>
+
+      <div class="mobile-home-indicator" onclick="window.OS.closeWindow(document.getElementById('win-projects'))"></div>
     </section>
 
     <!-- ==================================================================
          WINDOW 4: ML_Research_Lab.app (Interactive Loss Dynamics Simulator)
          ================================================================== -->
     <section class="os-window" id="win-lab" style="display: none; top: 70px; left: 280px; width: 880px; height: 560px;" aria-labelledby="win-lab-title">
+      <!-- Mobile Native App Bar -->
+      <div class="mobile-app-bar">
+        <button class="mobile-back-btn" onclick="window.OS.closeWindow(document.getElementById('win-lab'))">‹ Home</button>
+        <span class="mobile-bar-title">ML Research Lab</span>
+        <div style="width: 50px"></div>
+      </div>
+
       <div class="window-header">
         <div class="window-controls">
           <button class="win-btn win-close" title="Close"></button>
@@ -402,12 +587,21 @@
           </div>
         </div>
       </div>
+
+      <div class="mobile-home-indicator" onclick="window.OS.closeWindow(document.getElementById('win-lab'))"></div>
     </section>
 
     <!-- ==================================================================
          WINDOW 5: AeroCloud_SAR_Radar.app (Satellite Microwave Scanner)
          ================================================================== -->
     <section class="os-window" id="win-sar" style="display: none; top: 100px; left: 320px; width: 800px; height: 500px;" aria-labelledby="win-sar-title">
+      <!-- Mobile Native App Bar -->
+      <div class="mobile-app-bar">
+        <button class="mobile-back-btn" onclick="window.OS.closeWindow(document.getElementById('win-sar'))">‹ Home</button>
+        <span class="mobile-bar-title">AeroCloud SAR Radar</span>
+        <div style="width: 50px"></div>
+      </div>
+
       <div class="window-header">
         <div class="window-controls">
           <button class="win-btn win-close" title="Close"></button>
@@ -460,12 +654,21 @@
           </div>
         </div>
       </div>
+
+      <div class="mobile-home-indicator" onclick="window.OS.closeWindow(document.getElementById('win-sar'))"></div>
     </section>
 
     <!-- ==================================================================
          WINDOW 6: Skills_Matrix.app (System Capabilities)
          ================================================================== -->
     <section class="os-window" id="win-skills" style="display: none; top: 120px; left: 240px; width: 780px; height: 490px;" aria-labelledby="win-skills-title">
+      <!-- Mobile Native App Bar -->
+      <div class="mobile-app-bar">
+        <button class="mobile-back-btn" onclick="window.OS.closeWindow(document.getElementById('win-skills'))">‹ Home</button>
+        <span class="mobile-bar-title">Skills Matrix</span>
+        <div style="width: 50px"></div>
+      </div>
+
       <div class="window-header">
         <div class="window-controls">
           <button class="win-btn win-close" title="Close"></button>
@@ -483,12 +686,21 @@
           <!-- Injected via JavaScript -->
         </div>
       </div>
+
+      <div class="mobile-home-indicator" onclick="window.OS.closeWindow(document.getElementById('win-skills'))"></div>
     </section>
 
     <!-- ==================================================================
          WINDOW 7: Messenger.app (Direct Communication & Contact)
          ================================================================== -->
     <section class="os-window" id="win-contact" style="display: none; top: 90px; left: 360px; width: 680px; height: 500px;" aria-labelledby="win-contact-title">
+      <!-- Mobile Native App Bar -->
+      <div class="mobile-app-bar">
+        <button class="mobile-back-btn" onclick="window.OS.closeWindow(document.getElementById('win-contact'))">‹ Home</button>
+        <span class="mobile-bar-title">Messenger</span>
+        <div style="width: 50px"></div>
+      </div>
+
       <div class="window-header">
         <div class="window-controls">
           <button class="win-btn win-close" title="Close"></button>
@@ -541,6 +753,8 @@
           </button>
         </form>
       </div>
+
+      <div class="mobile-home-indicator" onclick="window.OS.closeWindow(document.getElementById('win-contact'))"></div>
     </section>
 
     <!-- Architecture Blueprint Inspector Modal -->
