@@ -201,7 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'lab': 'ML Research Lab',
     'sar': 'AeroCloud SAR',
     'skills': 'Skills Matrix',
-    'contact': 'Messenger'
+    'contact': 'Messenger',
+    'wallpapers': 'Wallpaper Preferences'
   };
 
   function bringToFront(win) {
@@ -707,6 +708,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <span class="terminal-line green">lab</span>       - Launch the real-time Deep Learning Loss Simulator
   <span class="terminal-line green">matrix</span>    - Stream falling digital matrix sequence
   <span class="terminal-line green">skills</span>    - List primary technical proficiencies
+  <span class="terminal-line green">wallpaper</span> - Launch Display & Wallpaper Preferences
   <span class="terminal-line green">bio</span>       - View academic and developer profile
   <span class="terminal-line green">contact</span>   - Get direct email and social links
   <span class="terminal-line green">clear</span>     - Clear terminal buffer
@@ -735,6 +737,12 @@ document.addEventListener('DOMContentLoaded', () => {
 <span class="terminal-line muted">Focus:</span> Theoretical Deep Learning & Resilient Distributed Systems
 <span class="terminal-line muted">Status:</span> ${escapeHtml(data.profile.status)}
 `);
+        break;
+
+      case 'wallpaper':
+      case 'wallpapers':
+        appendTerminal(`<span class="terminal-line cyan">Opening Wallpaper & Display Preferences...</span>`);
+        openWindow('wallpapers');
         break;
 
       case 'projects':
@@ -1142,6 +1150,185 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {}
   }
   syncGitHub();
+
+  // ========================================================================
+  // 11. Cybernetic Wallpaper & Display Engine
+  // ========================================================================
+  const WALLPAPER_PRESETS = [
+    {
+      id: 'cyber-obsidian',
+      name: 'Cyber Obsidian',
+      tag: 'Default Core',
+      css: 'radial-gradient(at 15% 15%, rgba(0, 229, 255, 0.20) 0px, transparent 55%), radial-gradient(at 85% 85%, rgba(16, 185, 129, 0.18) 0px, transparent 50%), radial-gradient(at 50% 50%, rgba(30, 41, 59, 0.4) 0px, transparent 65%), #07080c',
+      thumb: 'radial-gradient(at 15% 15%, rgba(0, 229, 255, 0.5) 0px, transparent 55%), radial-gradient(at 85% 85%, rgba(16, 185, 129, 0.5) 0px, transparent 50%), #07080c'
+    },
+    {
+      id: 'deep-nebula',
+      name: 'Deep Space Nebula',
+      tag: 'Cosmic Violet',
+      css: 'radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.35) 0%, transparent 55%), radial-gradient(ellipse at 20% 80%, rgba(59, 130, 246, 0.32) 0%, transparent 55%), radial-gradient(circle at 50% 30%, rgba(236, 72, 153, 0.20) 0%, transparent 40%), #060814',
+      thumb: 'radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.6) 0%, transparent 55%), radial-gradient(ellipse at 20% 80%, rgba(59, 130, 246, 0.5) 0%, transparent 55%), #060814'
+    },
+    {
+      id: 'matrix-rain',
+      name: 'Matrix Digital Rain',
+      tag: 'Emerald Phosphor',
+      css: 'radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.30) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(5, 150, 105, 0.24) 0%, transparent 50%), radial-gradient(circle at 10% 60%, rgba(6, 182, 212, 0.20) 0%, transparent 45%), #030a07',
+      thumb: 'radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.6) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(5, 150, 105, 0.5) 0%, transparent 50%), #030a07'
+    },
+    {
+      id: 'tokyo-midnight',
+      name: 'Tokyo Midnight',
+      tag: 'Neon Synthwave',
+      css: 'radial-gradient(circle at 15% 85%, rgba(244, 63, 94, 0.30) 0%, transparent 50%), radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.32) 0%, transparent 55%), radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.24) 0%, transparent 50%), #090614',
+      thumb: 'radial-gradient(circle at 15% 85%, rgba(244, 63, 94, 0.6) 0%, transparent 50%), radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.5) 0%, transparent 55%), #090614'
+    },
+    {
+      id: 'solar-flare',
+      name: 'Solar Flare',
+      tag: 'Golden Amber',
+      css: 'radial-gradient(circle at 75% 25%, rgba(245, 158, 11, 0.30) 0%, transparent 50%), radial-gradient(circle at 20% 70%, rgba(239, 68, 68, 0.22) 0%, transparent 55%), radial-gradient(circle at 60% 80%, rgba(217, 119, 6, 0.18) 0%, transparent 40%), #0c0804',
+      thumb: 'radial-gradient(circle at 75% 25%, rgba(245, 158, 11, 0.6) 0%, transparent 50%), radial-gradient(circle at 20% 70%, rgba(239, 68, 68, 0.5) 0%, transparent 55%), #0c0804'
+    },
+    {
+      id: 'minimal-stealth',
+      name: 'Obsidian Stealth',
+      tag: 'Matte Carbon',
+      css: 'radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%), #050608',
+      thumb: 'radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%), #050608'
+    }
+  ];
+
+  const wallpaperBackdrop = document.getElementById('os-wallpaper-backdrop');
+  const wallpaperOverlay = document.getElementById('os-wallpaper-overlay');
+  const wallpaperGrid = document.getElementById('wallpaper-presets-grid');
+  const customUrlInput = document.getElementById('custom-wallpaper-url');
+  const applyCustomUrlBtn = document.getElementById('apply-custom-url-btn');
+  const wallpaperFileInput = document.getElementById('wallpaper-file-input');
+  const particleSlider = document.getElementById('particle-slider');
+  const particleVal = document.getElementById('particle-val');
+  const dimSlider = document.getElementById('dim-slider');
+  const dimVal = document.getElementById('dim-val');
+
+  let currentWallpaperId = localStorage.getItem('vaibhav_os_wallpaper') || 'cyber-obsidian';
+  let customWallpaperData = localStorage.getItem('vaibhav_os_custom_wp') || null;
+
+  function renderWallpaperGrid() {
+    if (!wallpaperGrid) return;
+    wallpaperGrid.innerHTML = WALLPAPER_PRESETS.map(preset => {
+      const isActive = (currentWallpaperId === preset.id && !customWallpaperData);
+      return `
+        <div class="wallpaper-card ${isActive ? 'active' : ''}" data-id="${preset.id}">
+          <div class="wallpaper-thumb" style="background: ${preset.thumb}"></div>
+          <div class="wallpaper-info">
+            <span class="wallpaper-title">${escapeHtml(preset.name)}</span>
+            <span class="wallpaper-tag">${escapeHtml(preset.tag)}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    wallpaperGrid.querySelectorAll('.wallpaper-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.getAttribute('data-id');
+        applyPresetWallpaper(id);
+      });
+    });
+  }
+
+  function applyPresetWallpaper(id, showFeedback = true) {
+    const preset = WALLPAPER_PRESETS.find(p => p.id === id) || WALLPAPER_PRESETS[0];
+    currentWallpaperId = preset.id;
+    customWallpaperData = null;
+    localStorage.setItem('vaibhav_os_wallpaper', preset.id);
+    localStorage.removeItem('vaibhav_os_custom_wp');
+
+    if (wallpaperBackdrop) {
+      wallpaperBackdrop.style.background = preset.css;
+    }
+
+    renderWallpaperGrid();
+
+    if (showFeedback) {
+      playSound('click', 2200);
+      showToast(`Wallpaper updated: ${preset.name}`);
+    }
+  }
+
+  function applyCustomImage(urlOrData, showFeedback = true) {
+    customWallpaperData = urlOrData;
+    localStorage.setItem('vaibhav_os_custom_wp', urlOrData);
+
+    if (wallpaperBackdrop) {
+      wallpaperBackdrop.style.background = `url("${urlOrData}") center/cover no-repeat fixed #07080c`;
+    }
+
+    if (wallpaperGrid) {
+      wallpaperGrid.querySelectorAll('.wallpaper-card').forEach(c => c.classList.remove('active'));
+    }
+
+    if (showFeedback) {
+      playSound('click', 2400);
+      showToast("Custom wallpaper applied!");
+    }
+  }
+
+  window.OS.setWallpaper = applyPresetWallpaper;
+  window.OS.setCustomWallpaper = applyCustomImage;
+
+  if (applyCustomUrlBtn && customUrlInput) {
+    applyCustomUrlBtn.addEventListener('click', () => {
+      const val = customUrlInput.value.trim();
+      if (val) {
+        applyCustomImage(val);
+      }
+    });
+  }
+
+  if (wallpaperFileInput) {
+    wallpaperFileInput.addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          applyCustomImage(event.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+
+  if (particleSlider && particleVal && neuralCanvas) {
+    particleSlider.addEventListener('input', (e) => {
+      const val = e.target.value;
+      particleVal.textContent = `${val}%`;
+      neuralCanvas.style.opacity = (val / 100);
+    });
+  }
+
+  if (dimSlider && dimVal && wallpaperOverlay) {
+    dimSlider.addEventListener('input', (e) => {
+      const val = e.target.value;
+      dimVal.textContent = `${val}%`;
+      wallpaperOverlay.style.background = `rgba(0, 0, 0, ${val / 100})`;
+    });
+  }
+
+  // Restore saved wallpaper state
+  if (customWallpaperData) {
+    applyCustomImage(customWallpaperData, false);
+  } else {
+    applyPresetWallpaper(currentWallpaperId, false);
+  }
+  renderWallpaperGrid();
+
+  // URL Hash Deep-Linking (e.g. #wallpapers, #lab, #projects, #terminal)
+  if (window.location.hash) {
+    const targetApp = window.location.hash.replace('#', '');
+    if (appNameMap[targetApp]) {
+      setTimeout(() => openWindow(targetApp), 100);
+    }
+  }
 
   // Helper
   function escapeHtml(str) {
