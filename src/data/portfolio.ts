@@ -15,7 +15,7 @@ export const siteConfig = {
   linkedin:
     "https://linkedin.com/in/vaibhav-chavanpatil-a047b035a/",
   kaggle: "https://www.kaggle.com/vaibhavchavanpatil",
-  resumeFile: "/Vaibhav_Chavanpatil_Resume.pdf", // Place in /public
+  resumeFile: "/Vaibhav_Chavanpatil_Resume.pdf",
   location: "Karnataka, India",
 };
 
@@ -29,6 +29,8 @@ export interface Project {
   title: string;
   slug: string;
   tagline: string;
+  archetype: string;
+  spec: string;
   problem: string;
   solution: string;
   stack: string[];
@@ -45,6 +47,8 @@ export const projects: Project[] = [
     title: "SentimentIQ",
     slug: "sentimentiq",
     tagline: "Privacy-first retail sentiment analysis",
+    archetype: "Multi-Agent AI Pipeline",
+    spec: "NER Masking · 2-Tier Sentiment · Escalation Guard",
     problem:
       "Retail support desks handle thousands of messages. Angry customers sit in queue beside mundane tickets. Customers paste sensitive data — Aadhaar, phone numbers, cards — straight into chat. Bots keep talking when a human is needed.",
     solution:
@@ -60,6 +64,8 @@ export const projects: Project[] = [
     title: "GigaFlow",
     slug: "gigaflow",
     tagline: "Milestone-based escrow marketplace",
+    archetype: "Financial State Machine",
+    spec: "ACID Ledger · Double-Entry · Merkle Proofs",
     problem:
       "Freelance platforms have two failure modes: clients don't pay after work is done, or they pay upfront with no proof of deliverable quality. Both sides lose.",
     solution:
@@ -74,6 +80,8 @@ export const projects: Project[] = [
     title: "ExpenseIQ",
     slug: "expenseiq",
     tagline: "Offline-first personal finance tracker",
+    archetype: "Client-Side Store & Analytics",
+    spec: "IndexedDB Sync · Zero Latency · Reactive Charts",
     problem:
       "Most budget apps need constant connectivity, making them useless on spotty mobile networks. Data feels trapped in someone else's cloud.",
     solution:
@@ -89,6 +97,8 @@ export const projects: Project[] = [
     title: "KLE Connect",
     slug: "kleconnect",
     tagline: "Campus collaboration platform",
+    archetype: "Campus Knowledge Graph",
+    spec: "Relational Schemas · Sub-150ms Search · JWT",
     problem:
       "Students and faculty had no central place to share syllabi, notes, and announcements. Resources were scattered across WhatsApp groups and random drives.",
     solution:
@@ -103,6 +113,8 @@ export const projects: Project[] = [
     title: "Diana",
     slug: "diana",
     tagline: "Voice-controlled AI desktop companion",
+    archetype: "Bidirectional Voice Agent",
+    spec: "Gemini Live Audio · MCP Tool Runner · Real-Time",
     problem:
       "Desktop AI assistants are either cloud-locked toys or CLI-only tools. Neither feels like a real companion you can talk to.",
     solution:
