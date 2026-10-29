@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/data/portfolio";
 
+export const dynamic = "force-static";
 export const alt = "Vaibhav Chavanpatil — Full-Stack Developer";
 export const size = {
   width: 1200,

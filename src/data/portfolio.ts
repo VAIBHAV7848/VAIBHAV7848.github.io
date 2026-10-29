@@ -8,7 +8,7 @@ export const siteConfig = {
   title: "Vaibhav Chavanpatil — Full-Stack Developer",
   description:
     "Full-stack developer building secure web platforms, AI-powered tools, and systems that hold up under real use.",
-  url: "https://vaibhavchavanpatil.dev", // TODO: Update with actual domain
+  url: "https://vaibhav7848.github.io",
   email: "chavanpatilvaibhav395@gmail.com",
   phone: "+91-7349417848",
   github: "https://github.com/VAIBHAV7848",

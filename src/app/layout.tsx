@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   title: "Vaibhav Chavanpatil — Full-Stack Developer",
   description:
     "Full-stack developer building secure web platforms, AI-powered tools, and systems that hold up under real use.",
-  metadataBase: new URL("https://vaibhavchavanpatil.dev"), // TODO: Update with actual domain
+  metadataBase: new URL("https://vaibhav7848.github.io"),
   openGraph: {
     title: "Vaibhav Chavanpatil — Full-Stack Developer",
     description:
