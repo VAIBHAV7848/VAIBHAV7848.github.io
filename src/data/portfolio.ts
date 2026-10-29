@@ -1,210 +1,207 @@
 // ============================================================================
-// Portfolio Data — Single source of truth for all content.
-// Edit this file to update the site. All copy comes from the resume and GitHub.
+// Portfolio Data — Single Source of Truth
+// Voice: First person, plain, specific, short sentences.
+// No filler buzzwords (passionate, innovative, cutting-edge, leverage, crafting).
 // ============================================================================
-
-export const siteConfig = {
-  name: "Vaibhav Chavanpatil",
-  title: "Vaibhav Chavanpatil — Full-Stack Developer",
-  description:
-    "Full-stack developer building secure web platforms, AI-powered tools, and systems that hold up under real use.",
-  url: "https://vaibhav7848.github.io",
-  email: "chavanpatilvaibhav395@gmail.com",
-  phone: "+91-7349417848",
-  github: "https://github.com/VAIBHAV7848",
-  linkedin:
-    "https://linkedin.com/in/vaibhav-chavanpatil-a047b035a/",
-  kaggle: "https://www.kaggle.com/vaibhavchavanpatil",
-  resumeFile: "/Vaibhav_Chavanpatil_Resume.pdf",
-  location: "Karnataka, India",
-};
-
-export const hero = {
-  headline: "I build software that earns trust.",
-  sub: "Full-stack systems, AI pipelines, and interfaces — with a bias toward correctness, security, and craft.",
-};
 
 export interface Project {
   number: string;
   title: string;
   slug: string;
-  tagline: string;
-  archetype: string;
-  spec: string;
+  year: string;
+  summary: string;
   problem: string;
   solution: string;
   stack: string[];
   outcome: string;
   repoUrl: string;
   liveUrl?: string;
+  image: string;
   award?: string;
-  year: string;
 }
+
+export interface ExperienceItem {
+  period: string;
+  role: string;
+  organization: string;
+  location: string;
+  description: string;
+  highlights?: string[];
+}
+
+export const meta = {
+  name: "Vaibhav Chavanpatil",
+  role: "Full-Stack Developer",
+  location: "Belagavi, Karnataka, India",
+  availability: "Available for internships & full-stack roles",
+  email: "chavanpatilvaibhav395@gmail.com",
+  phone: "+91 73494 17848",
+  github: "https://github.com/VAIBHAV7848",
+  linkedin: "https://linkedin.com/in/vaibhav-chavanpatil-a047b035a/",
+  kaggle: "https://www.kaggle.com/vaibhavchavanpatil",
+  resumeUrl: "/Vaibhav_Chavanpatil_Resume.pdf",
+};
+
+export const hero = {
+  statementLead: "I build",
+  statementAccent: "dependable",
+  statementRest: "full-stack systems, machine learning pipelines, and interfaces that survive real use.",
+  facts: [
+    { label: "Location", value: "Belagavi, India" },
+    { label: "Status", value: "Available for Internships" },
+    { label: "Focus", value: "Full-Stack & Systems" },
+  ],
+};
 
 export const projects: Project[] = [
   {
     number: "01",
     title: "SentimentIQ",
     slug: "sentimentiq",
-    tagline: "Privacy-first retail sentiment analysis",
-    archetype: "Multi-Agent AI Pipeline",
-    spec: "NER Masking · 2-Tier Sentiment · Escalation Guard",
-    problem:
-      "Retail support desks handle thousands of messages. Angry customers sit in queue beside mundane tickets. Customers paste sensitive data — Aadhaar, phone numbers, cards — straight into chat. Bots keep talking when a human is needed.",
-    solution:
-      "Built a multi-agent chatbot that masks PII before any model sees it (Presidio + custom Indian recognizers), classifies sentiment in two tiers, generates empathetic responses, and escalates to humans when frustration hits a threshold. Sentiment-adaptive avatar gives real-time visual feedback.",
-    stack: ["Python", "FastAPI", "React 19", "TypeScript", "Hugging Face", "Presidio", "Ollama"],
-    outcome: "Won 1st place at TCS Technology Day Hackathon for innovative customer experience and privacy-first architecture.",
-    repoUrl: "https://github.com/VAIBHAV7848/TCS-Retail-Sentiment-Chatbot",
-    award: "1st Place — TCS Technology Day Hackathon",
     year: "2026",
+    summary: "Privacy-first retail support pipeline with PII masking and human escalation.",
+    problem:
+      "Retail support messages frequently contain sensitive data: Aadhaar numbers, phone numbers, and payment IDs. Passing these raw messages to public LLMs violates user privacy and banking standards. Frustrated customers also get stuck in bot loops while urgent chargebacks sit in queue.",
+    solution:
+      "I built a multi-agent support pipeline. It intercepts customer messages and runs Microsoft Presidio with custom Indian regex patterns to mask PII into tokenized vaults before any model receives them. A two-tier classifier analyzes sentiment and immediately routes high-frustration tickets to human agents.",
+    stack: ["Python", "FastAPI", "React 19", "Presidio", "Hugging Face", "Ollama"],
+    outcome:
+      "Awarded 1st Place at the TCS Technology Day Hackathon for privacy-preserving conversational architecture.",
+    repoUrl: "https://github.com/VAIBHAV7848/TCS-Retail-Sentiment-Chatbot",
+    image: "/projects/sentimentiq.png",
+    award: "Winner — TCS Technology Day Hackathon",
   },
   {
     number: "02",
     title: "GigaFlow",
     slug: "gigaflow",
-    tagline: "Milestone-based escrow marketplace",
-    archetype: "Financial State Machine",
-    spec: "ACID Ledger · Double-Entry · Merkle Proofs",
-    problem:
-      "Freelance platforms have two failure modes: clients don't pay after work is done, or they pay upfront with no proof of deliverable quality. Both sides lose.",
-    solution:
-      "Architected a milestone-based escrow platform with finite state machine lifecycles, double-entry ACID ledger with balance conservation, SHA-256 deliverable checksumming for cryptographic evidence arbitration, and role-based access across Client, Freelancer, and Arbiter portals.",
-    stack: ["Next.js 15", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],
-    outcome: "Academic team project demonstrating production-grade financial system design with concurrency-safe state transitions.",
-    repoUrl: "https://github.com/VAIBHAV7848/gigaflow",
     year: "2026",
+    summary: "Milestone escrow marketplace with finite state machines and double-entry accounting.",
+    problem:
+      "Freelance platforms suffer from symmetrical payment risk: clients refuse to release funds after work is done, or pay upfront without proof that deliverables meet specification.",
+    solution:
+      "I architected an escrow platform with strict finite state machine lifecycles (Locked → Funded → In Development → Submitted → Approved). Implemented a double-entry ledger that enforces balance conservation (ΔEscrow + ΔUser = 0) and generates SHA-256 deliverable checksums for cryptographic evidence during dispute arbitration.",
+    stack: ["Next.js 15", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],
+    outcome:
+      "Engineered role-based portals for clients, freelancers, and arbiters with zero ledger drift across test cycles.",
+    repoUrl: "https://github.com/VAIBHAV7848/gigaflow",
+    image: "/projects/gigaflow.png",
   },
   {
     number: "03",
     title: "ExpenseIQ",
     slug: "expenseiq",
-    tagline: "Offline-first personal finance tracker",
-    archetype: "Client-Side Store & Analytics",
-    spec: "IndexedDB Sync · Zero Latency · Reactive Charts",
-    problem:
-      "Most budget apps need constant connectivity, making them useless on spotty mobile networks. Data feels trapped in someone else's cloud.",
-    solution:
-      "Built an interactive budgeting dashboard with real-time graphical analytics and trend reports. All data persists client-side via IndexedDB — zero-latency transaction updates, seamless offline sync, no server dependency.",
-    stack: ["JavaScript", "React", "Chart.js", "IndexedDB", "Tailwind CSS"],
-    outcome: "Won Best Project Award in college for Web Technology course — recognized for exceptional UI design and offline architecture.",
-    repoUrl: "https://github.com/VAIBHAV7848/ExpenseIQ",
-    award: "Best Project Award — KLE Tech WebTech Course",
     year: "2025",
+    summary: "Client-side personal finance tracker with zero-latency IndexedDB persistence.",
+    problem:
+      "Most budget applications require constant network connectivity. On intermittent mobile data, logging daily expenses fails or lags, causing users to abandon tracking.",
+    solution:
+      "I built an offline-first expense dashboard. All transactions, budget limits, and category aggregations write directly to browser IndexedDB with sub-4ms update latency. The dashboard provides graphical spending trend analysis without sending financial records to an external server.",
+    stack: ["React", "JavaScript", "IndexedDB", "Chart.js", "Tailwind CSS"],
+    outcome:
+      "Won the College Best Project Award (Belagavi) in the Web Technology course for offline architecture and interface design.",
+    repoUrl: "https://github.com/VAIBHAV7848/ExpenseIQ",
+    image: "/projects/expenseiq.png",
+    award: "Best Project Award — KLE Tech, Belagavi",
   },
   {
     number: "04",
     title: "KLE Connect",
     slug: "kleconnect",
-    tagline: "Campus collaboration platform",
-    archetype: "Campus Knowledge Graph",
-    spec: "Relational Schemas · Sub-150ms Search · JWT",
-    problem:
-      "Students and faculty had no central place to share syllabi, notes, and announcements. Resources were scattered across WhatsApp groups and random drives.",
-    solution:
-      "Built a centralized resource-sharing platform with relational MySQL schemas, composite indexing for sub-150ms hierarchical search, JWT-authenticated API endpoints, peer-voting mechanisms, and responsive mobile-first UI.",
-    stack: ["TypeScript", "React", "Node.js", "Express", "MySQL"],
-    outcome: "Active campus tool used by students and faculty for resource syndication across departments.",
-    repoUrl: "https://github.com/VAIBHAV7848/KLE_CONNECT",
     year: "2025",
-  },
-  {
-    number: "05",
-    title: "Diana",
-    slug: "diana",
-    tagline: "Voice-controlled AI desktop companion",
-    archetype: "Bidirectional Voice Agent",
-    spec: "Gemini Live Audio · MCP Tool Runner · Real-Time",
+    summary: "Academic resource platform with sub-150ms hierarchical search for university departments.",
     problem:
-      "Desktop AI assistants are either cloud-locked toys or CLI-only tools. Neither feels like a real companion you can talk to.",
+      "Engineering students and faculty lacked a single verified repository for syllabi, lab manuals, and previous examination papers. Materials were scattered across private chat groups.",
     solution:
-      "Built a voice-controlled desktop companion powered by Gemini Live Audio and MCP tools. Real-time bidirectional voice interaction with tool use — not just a chatbot, but an agent that can execute actions on your machine.",
-    stack: ["Python", "Gemini Live Audio", "MCP", "Voice Recognition"],
-    outcome: "Open-source AI companion demonstrating real-time voice + tool integration patterns.",
-    repoUrl: "https://github.com/VAIBHAV7848/Diana",
-    year: "2026",
+      "I developed a centralized resource syndication platform. Built relational MySQL schemas with composite indexing for sub-150ms department resource queries. Implemented JWT session authorization, a peer-reviewed resource verification system, and a responsive mobile interface.",
+    stack: ["TypeScript", "React", "Node.js", "Express", "MySQL"],
+    outcome:
+      "Deployed for university students and faculty across semester cycles for curriculum resource distribution.",
+    repoUrl: "https://github.com/VAIBHAV7848/KLE_CONNECT",
+    image: "/projects/kleconnect.png",
   },
 ];
 
-export const education = [
-  {
-    institution: "KLE Technological University",
-    location: "Karnataka, India",
-    degree: "Bachelor of Technology in Computer Science and Engineering",
-    period: "Aug 2024 — May 2028",
-    detail: "CGPA: 6.5 / 10.0",
-    coursework:
-      "Data Structures & Algorithms, OOP (Java/C++), DBMS (SQL), Operating Systems, Computer Networks",
+export const about = {
+  lead: "I am a computer science student and full-stack developer based in Karnataka, India.",
+  body: [
+    "I study at KLE Technological University (2024–2028). My work focuses on building full-stack platforms, financial state machines, and machine learning pipelines that operate predictably under constraints.",
+    "I avoid decorative complexity. I prefer code that can be verified: double-entry balance checks for escrow funds, PII masking before inference, and client-side storage that survives network drops.",
+    "Outside coursework, I compete in hackathons, participate in the Stanford WiDS Global Datathon, and write open-source tools from the Linux terminal.",
+  ],
+  photo: {
+    src: "/vaibhav.jpeg",
+    alt: "Vaibhav Chavanpatil",
+    caption: "FIG 01. VAIBHAV CHAVANPATIL, 2026.",
   },
-];
-
-export const skills = {
-  "Languages": ["Java", "Python", "C", "C++", "TypeScript", "JavaScript", "SQL"],
-  "AI & Machine Learning": [
-    "PyTorch",
-    "Scikit-Learn",
-    "Pandas",
-    "NumPy",
-    "NLP",
-    "Multi-Agent Systems",
-  ],
-  "Full-Stack & Web": [
-    "React",
-    "Next.js 15",
-    "Node.js",
-    "Express.js",
-    "Tailwind CSS",
-    "REST APIs",
-  ],
-  "Databases & ORM": ["PostgreSQL", "MySQL", "Prisma ORM", "IndexedDB", "SQLite"],
-  "Developer Tools": [
-    "Git",
-    "GitHub",
-    "Linux / Bash",
-    "VS Code",
-    "Jupyter Notebook",
-    "Agentic Coding & CLI Workflows",
-  ],
 };
 
-export const achievements = [
+export const experience: ExperienceItem[] = [
   {
-    title: "1st Place — TCS Technology Day Hackathon",
-    detail: "Multi-Agent Retail Sentiment AI",
-    year: "2026",
-  },
-  {
-    title: "Best Project Award — KLE Tech",
-    detail: "ExpenseIQ, Web Technology course",
-    year: "2025",
-  },
-  {
-    title: "Google & Kaggle Certified",
-    detail: "AI Agents Vibe Coding (2026) & AI Agents Intensive (2025) — Capstone Builder",
-    links: [
-      {
-        label: "Vibe Coding",
-        url: "https://www.kaggle.com/certification/badges/vaibhavchavanpatil/108",
-      },
-      {
-        label: "Intensive",
-        url: "https://www.kaggle.com/certification/badges/vaibhavchavanpatil/105",
-      },
+    period: "2024 — 2028",
+    role: "B.Tech in Computer Science and Engineering",
+    organization: "KLE Technological University, Belagavi",
+    location: "Belagavi, Karnataka, India",
+    description:
+      "Current 3rd-year undergraduate student. Cumulative CGPA: 6.5 / 10.0.",
+    highlights: [
+      "Coursework: Data Structures & Algorithms, Object-Oriented Programming (Java/C++), Database Management Systems (SQL), Operating Systems, Computer Networks.",
     ],
   },
   {
-    title: "IBM Certified — Getting Started with AI",
-    detail: "IBM SkillsBuild, Credly Verified",
-    links: [
-      {
-        label: "Credly Badge",
-        url: "https://www.credly.com/badges/c140727b-a954-4315-b41a-2aeeb993a21b",
-      },
-    ],
+    period: "OCT 2026",
+    role: "1st Place Winner",
+    organization: "TCS Technology Day Hackathon",
+    location: "Belagavi, India",
+    description:
+      "Won 1st Place for SentimentIQ: a multi-agent retail sentiment analysis and privacy-first customer support pipeline with PII scrubbing.",
   },
   {
-    title: "Stanford WiDS Global Datathon 2026",
-    detail: "Predictive Climate Survival — Active Competitor",
-    year: "2026",
+    period: "2025",
+    role: "Best Project Award",
+    organization: "KLE Tech Web Technology Course",
+    location: "Belagavi, India",
+    description:
+      "Awarded 1st Prize / Best Project Award in College (Belagavi) for ExpenseIQ: offline-first personal budget tracker with IndexedDB storage.",
+  },
+  {
+    period: "2025 — 2026",
+    role: "Certified AI Builder",
+    organization: "Google & Kaggle",
+    location: "Remote",
+    description:
+      "Completed 5-Day AI Agents Intensive (2025) and AI Agents Vibe Coding (2026). Capstone project verified.",
+  },
+  {
+    period: "SEP 2026",
+    role: "Certified in Artificial Intelligence",
+    organization: "IBM SkillsBuild (Credly Verified)",
+    location: "Remote",
+    description:
+      "Earned digital credential for AI engineering foundations and code troubleshooting methodology.",
+  },
+  {
+    period: "2026",
+    role: "Datathon Competitor",
+    organization: "Stanford / WiDS Global Datathon",
+    location: "Remote",
+    description:
+      "Built predictive survival models and risk stratification pipelines for wildfire climate data analysis.",
   },
 ];
+
+export const skillsGrouped = {
+  "Languages": ["Java", "Python", "C", "C++", "TypeScript", "JavaScript", "SQL"],
+  "AI & Systems": ["PyTorch", "Scikit-Learn", "Pandas", "NumPy", "NLP", "Multi-Agent Systems"],
+  "Web & Backend": ["React 19", "Next.js 15", "Node.js", "Express.js", "Tailwind CSS", "REST APIs"],
+  "Databases": ["PostgreSQL", "MySQL", "Prisma ORM", "IndexedDB", "SQLite"],
+  "Environment": ["Linux / Bash", "Git", "GitHub", "VS Code", "CLI Workflows"],
+};
+
+export const colophon = {
+  typography: "Instrument Serif (Display) & Geist (Body, Mono)",
+  stack: "Next.js 16 (App Router), TypeScript, Tailwind CSS",
+  palette: "Paper #F3EFE6, Ink #1A1814, Muted #6B655A, Hairline #D8D1C2, Vermilion #D4400F",
+  updated: "October 2026",
+  license: "MIT License",
+};

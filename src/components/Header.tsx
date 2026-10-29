@@ -1,58 +1,97 @@
 "use client";
 
-import { siteConfig } from "@/data/portfolio";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { meta } from "@/data/portfolio";
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const [istTime, setIstTime] = useState<string>("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const updateTime = () => {
+      const now = new Date();
+      // Format time in Asia/Kolkata (IST)
+      const formatter = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      });
+      setIstTime(`${formatter.format(now)} IST`);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
   }, []);
 
-  const navLinks = [
-    { label: "Work", href: "#work" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
-  ];
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-        scrolled
-          ? "bg-ivory/95 backdrop-blur-md border-b border-rule"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="mx-auto max-w-[1200px] px-5 sm:px-6 md:px-8">
-        <nav
-          className="flex items-center justify-between h-14 md:h-16"
-          aria-label="Main navigation"
-        >
-          <a
-            href="#"
-            className="font-serif text-lg tracking-tight text-ink hover:text-terracotta transition-colors py-2"
-            aria-label="Vaibhav Chavanpatil — Back to top"
-          >
-            {siteConfig.name.split(" ")[0]}
-            <span className="text-terracotta">.</span>
-          </a>
+    <header className="w-full pt-8 pb-8 md:pt-12 md:pb-12 hairline-b">
+      <div className="mx-auto max-w-[1280px] px-6 sm:px-8 md:px-12">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+          {/* Name left */}
+          <div className="flex items-baseline gap-4">
+            <a
+              href="#"
+              className="font-serif text-2xl tracking-tight text-ink hover:text-vermilion transition-colors"
+            >
+              {meta.name}
+            </a>
+            <span className="label-mono text-muted hidden lg:inline">
+              / {meta.role}
+            </span>
+          </div>
 
-          <ul className="flex items-center gap-4 sm:gap-6 md:gap-8">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="label-mono link-underline text-ink-muted hover:text-ink transition-colors py-2 text-[0.72rem] sm:text-xs"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+          {/* Right side: Live IST time + Plain text nav */}
+          <div className="flex items-baseline gap-6 sm:gap-8 flex-wrap justify-between sm:justify-end">
+            {istTime && (
+              <div
+                className="label-mono tabular-numbers text-muted tracking-widest text-[11px]"
+                aria-label={`Current Indian Standard Time: ${istTime}`}
+              >
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-vermilion mr-2 align-middle animate-pulse" />
+                {istTime}
+              </div>
+            )}
+
+            <nav aria-label="Main Navigation">
+              <ul className="flex items-baseline gap-6 text-[12px] label-mono">
+                <li>
+                  <a
+                    href="#work"
+                    className="editorial-link text-ink hover:text-vermilion transition-colors"
+                  >
+                    Work
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#about"
+                    className="editorial-link text-ink hover:text-vermilion transition-colors"
+                  >
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#experience"
+                    className="editorial-link text-ink hover:text-vermilion transition-colors"
+                  >
+                    Experience
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#contact"
+                    className="editorial-link text-ink hover:text-vermilion transition-colors"
+                  >
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
       </div>
     </header>
   );

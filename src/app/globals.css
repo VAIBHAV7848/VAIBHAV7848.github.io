@@ -1,207 +1,179 @@
 @import "tailwindcss";
 
 /* ===================================================================
-   Design System — Editorial Light Theme
-   
-   Palette: Ivory #FAF8F5 bg, Ink #1A1A1A text, Terracotta #C4563A accent.
-   Earthy, warm, confident. Restrained editorial craft.
+   Design Tokens — Exact Specification
+   Paper #F3EFE6, Ink #1A1814, Muted #6B655A, Hairline #D8D1C2
+   Accent Vermilion #D4400F on under 5% of the page
    =================================================================== */
 
 @theme {
-  --color-ivory: #FAF8F5;
-  --color-ivory-warm: #F4EFEA;
-  --color-ink: #1A1A1A;
-  --color-ink-light: #3D3A37;
-  --color-ink-muted: #6B6560;
-  --color-terracotta: #B8482E;
-  --color-terracotta-light: #C8563A;
-  --color-terracotta-dark: #983820;
-  --color-rule: #E2DDD6;
-  --color-rule-light: #ECE7E0;
-  --color-selection-bg: #C4563A;
-  --color-selection-fg: #FAF8F5;
+  --color-paper: #F3EFE6;
+  --color-paper-tint: #ECE7DD;
+  --color-ink: #1A1814;
+  --color-muted: #6B655A;
+  --color-hairline: #D8D1C2;
+  --color-vermilion: #D4400F;
+  --color-vermilion-hover: #B8360C;
 
-  /* Fluid type scale — clamp(min, preferred, max) */
-  --font-size-xs: clamp(0.7rem, 0.67rem + 0.15vw, 0.78rem);
-  --font-size-sm: clamp(0.84rem, 0.8rem + 0.2vw, 0.92rem);
-  --font-size-base: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
-  --font-size-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.28rem);
-  --font-size-xl: clamp(1.35rem, 1.22rem + 0.65vw, 1.7rem);
-  --font-size-2xl: clamp(1.75rem, 1.45rem + 1.2vw, 2.35rem);
-  --font-size-3xl: clamp(2.2rem, 1.7rem + 2vw, 3.25rem);
-  --font-size-4xl: clamp(2.6rem, 1.9rem + 2.8vw, 4.25rem);
+  /* Font Families */
+  --font-serif: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Spacing scale */
-  --spacing-section: clamp(3.5rem, 3rem + 3vw, 6.5rem);
-
-  /* Font families */
-  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
-  --font-mono: var(--font-geist-mono), "Fira Code", "Cascadia Code", monospace;
+  /* Spacing Tokens: 4, 8, 12, 16, 24, 32, 48, 72, 120 */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-72: 72px;
+  --spacing-120: 120px;
 }
 
-/* ——— Base ——— */
-
-::selection {
-  background-color: var(--color-selection-bg);
-  color: var(--color-selection-fg);
-}
+/* ——— Base Typography & Layout ——— */
 
 html {
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
 }
 
 body {
   font-family: var(--font-sans);
-  font-size: var(--font-size-base);
-  line-height: 1.65;
+  font-size: 17.5px;
+  line-height: 1.6;
+  background-color: var(--color-paper);
   color: var(--color-ink);
-  background-color: var(--color-ivory);
+  margin: 0;
 }
 
-/* Subtle paper texture overlay */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.015;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-}
-
-/* ——— Focus ——— */
-
-:focus-visible {
-  outline: 2px solid var(--color-terracotta);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-/* ——— Typography ——— */
-
+/* Headlines */
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
   font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  text-wrap: balance;
+  margin: 0;
 }
 
-/* ——— Hairline rules ——— */
-
-.hairline {
-  border: none;
-  border-top: 1px solid var(--color-rule);
+/* Hero Typography Scale */
+.hero-statement {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 10vw, 8.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  text-wrap: balance;
+  color: var(--color-ink);
 }
 
-.hairline-light {
-  border: none;
-  border-top: 1px solid var(--color-rule-light);
+.hero-statement em,
+.hero-statement .italic-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
 }
 
-/* ——— Link underline animation ——— */
-
-.link-underline {
-  position: relative;
-  text-decoration: none;
+/* Body constraints */
+p, .prose-copy {
+  max-width: 62ch;
 }
 
-.link-underline::after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background-color: currentColor;
-  transition: width 0.25s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.link-underline:hover::after {
-  width: 100%;
-}
-
-/* ——— Mono label style ——— */
-
+/* Mono Labels: 12px mono uppercase, tracking .08em */
 .label-mono {
   font-family: var(--font-mono);
-  font-size: var(--font-size-xs);
+  font-size: 12px;
+  line-height: 1.4;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-ink-muted);
+  color: var(--color-muted);
 }
 
-/* ——— Section number ——— */
-
-.section-number {
+/* Tabular Numerals for Dates and Indexes */
+.tabular-numbers {
+  font-variant-numeric: tabular-nums;
   font-family: var(--font-mono);
-  font-size: var(--font-size-xs);
-  letter-spacing: 0.1em;
-  color: var(--color-terracotta);
 }
 
-/* ——— Project cover — architectural index plate ——— */
-
-.project-cover {
-  background-color: var(--color-ivory-warm);
-  border: 1px solid var(--color-rule);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
-  position: relative;
-  overflow: hidden;
-  min-height: 220px;
-  transition: border-color 0.25s ease, background-color 0.25s ease;
+/* 1px Hairlines */
+.hairline-b {
+  border-bottom: 1px solid var(--color-hairline);
+}
+.hairline-t {
+  border-top: 1px solid var(--color-hairline);
+}
+.hairline-y {
+  border-top: 1px solid var(--color-hairline);
+  border-bottom: 1px solid var(--color-hairline);
+}
+.hairline-all {
+  border: 1px solid var(--color-hairline);
 }
 
-.project-cover:hover {
-  border-color: var(--color-terracotta);
-  background-color: #FAF5EF;
+/* Styled Focus Rings */
+:focus-visible {
+  outline: 2px solid var(--color-vermilion);
+  outline-offset: 3px;
+  border-radius: 1px;
 }
 
-.project-cover .cover-watermark {
-  font-family: var(--font-serif);
-  font-size: clamp(4.5rem, 3.5rem + 4vw, 7.5rem);
-  line-height: 1;
-  color: var(--color-rule);
-  position: absolute;
-  bottom: clamp(-0.5rem, -0.25rem, 0.5rem);
-  right: clamp(1rem, 0.5rem + 2vw, 2rem);
-  user-select: none;
-  pointer-events: none;
-  transition: color 0.25s ease;
+/* Custom Text Underline with animated offset */
+.editorial-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color-hairline);
+  transition: text-decoration-color 0.2s ease, color 0.2s ease, text-underline-offset 0.2s ease;
 }
 
-.project-cover:hover .cover-watermark {
-  color: #E2DDD4;
+.editorial-link:hover {
+  text-decoration-color: var(--color-vermilion);
+  text-underline-offset: 6px;
+  color: var(--color-vermilion);
 }
 
-/* ——— Smooth scroll target offset ——— */
-
-section[id] {
-  scroll-margin-top: 5rem;
+.cta-link {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color-ink);
+  transition: text-decoration-color 0.2s ease, color 0.2s ease, text-underline-offset 0.2s ease;
 }
 
-/* Smoother scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+.cta-link:hover {
+  text-decoration-color: var(--color-vermilion);
+  text-underline-offset: 7px;
+  color: var(--color-vermilion);
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-ivory);
+/* Section Spacing: 120px desktop, 72px mobile */
+.section-pad {
+  padding-top: 72px;
+  padding-bottom: 72px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-rule);
-  border-radius: 3px;
+@media (min-width: 768px) {
+  .section-pad {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-ink-muted);
+/* Motion: Subtle reveals & hover only; respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

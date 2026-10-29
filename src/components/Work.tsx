@@ -1,182 +1,251 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
 import { projects } from "@/data/portfolio";
 import type { Project } from "@/data/portfolio";
-import { RevealSection } from "./RevealSection";
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const isEven = index % 2 === 0;
+function ProjectRow({
+  project,
+  isOpen,
+  onToggle,
+}: {
+  project: Project;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <RevealSection>
-      <article className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 py-10 md:py-14">
-        {/* Architectural Specification Plate */}
-        <div
-          className={`lg:col-span-5 ${
-            isEven ? "lg:order-1" : "lg:order-2"
-          }`}
-        >
-          <a
-            href={project.repoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block group h-full"
-          >
-            <div className="project-cover h-full">
-              {/* Watermark Numeral */}
-              <span className="cover-watermark" aria-hidden="true">
-                {project.number}
-              </span>
-
-              {/* Plate Header */}
-              <div className="relative z-10 flex items-center justify-between border-b border-rule pb-2.5">
-                <span className="label-mono text-[0.68rem]">
-                  SYS.SPEC // {project.year}
-                </span>
-                <span className="label-mono text-terracotta text-[0.68rem]">
-                  {project.number}
-                </span>
-              </div>
-
-              {/* Plate Body */}
-              <div className="relative z-10 my-6">
-                <p className="label-mono text-[0.7rem] text-terracotta mb-1">
-                  {project.archetype}
-                </p>
-                <h3 className="font-serif text-[length:var(--font-size-xl)] text-ink leading-tight">
-                  {project.title}
-                </h3>
-                <p className="text-[length:var(--font-size-xs)] font-mono text-ink-muted mt-2 leading-relaxed">
-                  {project.spec}
-                </p>
-              </div>
-
-              {/* Plate Footer */}
-              <div className="relative z-10 pt-2 flex items-center justify-between border-t border-rule text-[length:var(--font-size-xs)] font-mono text-ink group-hover:text-terracotta transition-colors">
-                <span>View on GitHub</span>
-                <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                  ↗
-                </span>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        {/* Case Study Details */}
-        <div
-          className={`lg:col-span-7 flex flex-col justify-between ${
-            isEven ? "lg:order-2" : "lg:order-1"
-          }`}
-        >
+    <div
+      className="hairline-b last:border-b-0 group transition-colors duration-200"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Index Row */}
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={`case-study-${project.slug}`}
+        className="w-full py-8 sm:py-10 text-left flex flex-col md:flex-row md:items-baseline justify-between gap-4 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vermilion"
+      >
+        {/* Left: Number + Title */}
+        <div className="flex items-baseline gap-6 sm:gap-10 transition-transform duration-200 group-hover:translate-x-2">
+          <span className="label-mono tabular-numbers text-muted text-sm shrink-0">
+            {project.number}
+          </span>
           <div>
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-              <span className="section-number text-xs">{project.number}</span>
-              <h3 className="font-serif text-[length:var(--font-size-2xl)] text-ink">
-                {project.title}
-              </h3>
-              <span className="text-ink-muted text-sm hidden sm:inline">—</span>
-              <p className="text-[length:var(--font-size-sm)] text-ink-muted italic">
-                {project.tagline}
-              </p>
-            </div>
+            <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight text-ink group-hover:text-vermilion transition-colors">
+              {project.title}
+            </h3>
+            <p className="text-sm text-muted mt-1 max-w-md hidden sm:block">
+              {project.summary}
+            </p>
+          </div>
+        </div>
 
-            {project.award && (
-              <div className="inline-flex items-center gap-2 mb-4 px-2.5 py-1 bg-ivory-warm border border-rule text-terracotta text-[0.72rem] font-mono tracking-wide">
-                <span>◆</span>
-                <span className="font-medium">{project.award}</span>
-              </div>
-            )}
-
-            <div className="space-y-3.5 text-[length:var(--font-size-sm)] text-ink-light leading-relaxed mt-1">
-              <div>
-                <p className="label-mono text-[0.68rem] text-ink-muted mb-1">
-                  The Problem
-                </p>
-                <p>{project.problem}</p>
-              </div>
-
-              <div>
-                <p className="label-mono text-[0.68rem] text-ink-muted mb-1">
-                  Architecture & Implementation
-                </p>
-                <p>{project.solution}</p>
-              </div>
-
-              {project.outcome && (
-                <div>
-                  <p className="label-mono text-[0.68rem] text-ink-muted mb-1">
-                    Outcome & Verification
-                  </p>
-                  <p className="font-medium text-ink">{project.outcome}</p>
-                </div>
-              )}
-            </div>
+        {/* Right: Year + Stack + Arrow */}
+        <div className="flex items-baseline justify-between md:justify-end gap-6 sm:gap-10 shrink-0 pl-12 md:pl-0">
+          <div className="hidden lg:block text-right">
+            <span className="label-mono text-[11px] block">
+              {project.stack.slice(0, 3).join(" · ")}
+            </span>
           </div>
 
-          <div className="pt-6">
-            {/* Stack badges */}
-            <div className="flex flex-wrap gap-1.5 mb-4">
-              {project.stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="text-[0.72rem] font-mono text-ink-muted bg-ivory-warm border border-rule px-2 py-0.5"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+          <span className="label-mono tabular-numbers text-muted text-xs shrink-0">
+            {project.year}
+          </span>
 
-            {/* Links */}
-            <div className="flex items-center gap-6">
-              <a
-                href={project.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[length:var(--font-size-sm)] font-medium text-ink hover:text-terracotta transition-colors link-underline inline-flex items-center gap-1.5"
-              >
-                <span>GitHub Repository</span>
-                <span aria-hidden="true">→</span>
-              </a>
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[length:var(--font-size-sm)] font-medium text-terracotta hover:text-terracotta-dark transition-colors link-underline inline-flex items-center gap-1.5"
-                >
-                  <span>Live Demo</span>
-                  <span aria-hidden="true">↗</span>
-                </a>
-              )}
+          <span
+            className={`font-serif text-2xl text-ink transition-transform duration-300 ${
+              isOpen
+                ? "rotate-90 text-vermilion"
+                : "group-hover:translate-x-1 group-hover:text-vermilion"
+            }`}
+            aria-hidden="true"
+          >
+            →
+          </span>
+        </div>
+      </button>
+
+      {/* Floating Hover Preview (Desktop only) */}
+      {isHovered && !isOpen && (
+        <div
+          className="hidden xl:block fixed pointer-events-none z-40 transition-opacity duration-200 shadow-sm"
+          style={{
+            top: "35%",
+            right: "10%",
+            width: "320px",
+            height: "200px",
+          }}
+        >
+          <div className="relative w-full h-full bg-paper hairline-all p-2">
+            <div className="relative w-full h-full overflow-hidden bg-paper-tint">
+              <Image
+                src={project.image}
+                alt={`${project.title} interface preview`}
+                fill
+                className="object-cover object-top"
+                sizes="320px"
+              />
+            </div>
+            <p className="label-mono text-[10px] mt-1 text-center truncate">
+              {project.title} {"//"} PREVIEW
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Expandable Case Study Drawer */}
+      {isOpen && (
+        <div
+          id={`case-study-${project.slug}`}
+          className="pb-12 pt-2 animate-fadeIn"
+        >
+          <div className="bg-paper-tint hairline-all p-6 sm:p-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+              {/* Left Column: Problem, Solution, Outcome */}
+              <div className="lg:col-span-7 space-y-6">
+                {project.award && (
+                  <div className="inline-block border border-vermilion/40 bg-paper px-3 py-1">
+                    <span className="label-mono text-vermilion text-[11px]">
+                      ◆ {project.award}
+                    </span>
+                  </div>
+                )}
+
+                <div>
+                  <p className="label-mono text-[11px] text-muted mb-1.5">
+                    01 // THE PROBLEM
+                  </p>
+                  <p className="text-[16px] text-ink leading-relaxed">
+                    {project.problem}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="label-mono text-[11px] text-muted mb-1.5">
+                    02 // WHAT I BUILT
+                  </p>
+                  <p className="text-[16px] text-ink leading-relaxed">
+                    {project.solution}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="label-mono text-[11px] text-muted mb-1.5">
+                    03 // VERIFIED OUTCOME
+                  </p>
+                  <p className="text-[16px] text-ink leading-relaxed font-medium">
+                    {project.outcome}
+                  </p>
+                </div>
+
+                {/* Stack Tags */}
+                <div>
+                  <p className="label-mono text-[11px] text-muted mb-2">
+                    TECHNOLOGY STACK
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="label-mono text-[11px] bg-paper hairline-all px-2.5 py-1 text-ink"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Links */}
+                <div className="pt-2 flex flex-wrap gap-6 items-baseline">
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cta-link text-ink hover:text-vermilion inline-flex items-center gap-1.5"
+                  >
+                    <span>View GitHub Repository</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cta-link text-vermilion inline-flex items-center gap-1.5"
+                    >
+                      <span>Live Deployment</span>
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Right Column: Real Project Screenshot */}
+              <div className="lg:col-span-5 flex flex-col justify-start">
+                <div className="hairline-all bg-paper p-2">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-paper-tint">
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} verified capture`}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 1024px) 100vw, 420px"
+                    />
+                  </div>
+                  <p className="label-mono text-[10px] text-muted mt-2 text-center">
+                    FIG // {project.number}. {project.title.toUpperCase()} INTERFACE
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </article>
-    </RevealSection>
+      )}
+    </div>
   );
 }
 
 export function Work() {
-  return (
-    <section id="work" className="py-(--spacing-section)">
-      <div className="mx-auto max-w-[1200px] px-5 sm:px-6 md:px-8">
-        <RevealSection>
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
-            <div className="flex items-baseline gap-3">
-              <span className="section-number text-xs">01</span>
-              <h2 className="font-serif text-[length:var(--font-size-3xl)] text-ink">
-                Selected Work
-              </h2>
-            </div>
-            <p className="text-[length:var(--font-size-xs)] font-mono text-ink-muted">
-              5 FEATURED CASE STUDIES
-            </p>
-          </div>
-          <hr className="hairline" />
-        </RevealSection>
+  const [openIndex, setOpenIndex] = useState<number | null>(0); // First case study open by default
 
-        <div className="divide-y divide-rule">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.slug} project={project} index={i} />
-          ))}
+  return (
+    <section id="work" className="section-pad hairline-b" aria-label="Selected Work">
+      <div className="mx-auto max-w-[1280px] px-6 sm:px-8 md:px-12">
+        {/* Asymmetric 12-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
+          {/* Label in cols 1-3 */}
+          <div className="col-span-12 md:col-span-3 lg:col-span-4">
+            <div className="sticky top-12">
+              <p className="label-mono text-muted">01 — Work</p>
+              <h2 className="font-serif text-3xl sm:text-4xl text-ink mt-2">
+                Selected Index
+              </h2>
+              <p className="text-sm text-muted mt-3 max-w-xs leading-relaxed">
+                Four engineering case studies built under concrete performance, privacy, and correctness requirements.
+              </p>
+            </div>
+          </div>
+
+          {/* Index List in cols 5-12 */}
+          <div className="col-span-12 md:col-span-9 md:col-start-4 lg:col-span-8 lg:col-start-5">
+            <div className="hairline-t">
+              {projects.map((project, idx) => (
+                <ProjectRow
+                  key={project.slug}
+                  project={project}
+                  isOpen={openIndex === idx}
+                  onToggle={() =>
+                    setOpenIndex(openIndex === idx ? null : idx)
+                  }
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
