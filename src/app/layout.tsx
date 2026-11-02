@@ -1,56 +1,39 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import { Playfair_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { meta } from "@/data/portfolio";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const serif = Playfair_Display({
   subsets: ["latin"],
+  variable: "--font-serif",
   display: "swap",
+  weight: ["400", "600", "700", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const mono = JetBrains_Mono({
   subsets: ["latin"],
+  variable: "--font-mono",
   display: "swap",
-});
-
-const instrumentSerif = localFont({
-  src: [
-    {
-      path: "../../public/fonts/InstrumentSerif-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/InstrumentSerif-Italic.ttf",
-      weight: "400",
-      style: "italic",
-    },
-  ],
-  variable: "--font-instrument-serif",
-  display: "swap",
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
-  title: `${meta.name} — ${meta.role}`,
+  title: "Vaibhav Chavanpatil — Continuous Line Portfolio",
   description:
-    "Full-stack developer building dependable web systems, machine learning pipelines, and interfaces that survive real use.",
-  metadataBase: new URL("https://vaibhav7848.github.io"),
+    "Portfolio of Vaibhav Chavanpatil, Systems & AI Developer. Driven by one continuous line through code, architecture, and machine intelligence.",
+  keywords: [
+    "Vaibhav Chavanpatil",
+    "Continuous Line Portfolio",
+    "Full-Stack Developer",
+    "AI Systems",
+    "KLE Tech",
+    "GSAP ScrollTrigger",
+  ],
+  authors: [{ name: "Vaibhav Chavanpatil" }],
   openGraph: {
-    title: `${meta.name} — ${meta.role}`,
+    title: "Vaibhav Chavanpatil — One Continuous Line",
     description:
-      "Full-stack developer building dependable web systems, machine learning pipelines, and interfaces that survive real use.",
+      "A portfolio engineered around ONE continuous line, tracing from portrait to page spine, project nodes, and terminal contact.",
     type: "website",
-    locale: "en_US",
-    url: "https://vaibhav7848.github.io",
-  },
-  icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico" },
-    ],
   },
 };
 
@@ -60,18 +43,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
-    >
-      <body className="bg-paper text-ink antialiased selection:bg-vermilion selection:text-paper font-sans">
-        {/* Skip to main content for accessibility */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-vermilion focus:text-paper focus:px-4 focus:py-2 focus:text-xs focus:font-mono focus:uppercase focus:tracking-wider focus:outline-none"
-        >
-          Skip to main content
-        </a>
+    <html lang="en" className={`${serif.variable} ${mono.variable}`}>
+      <body className="bg-paper-100 text-ink-950 font-serif antialiased selection:bg-crimson selection:text-paper-100 min-h-screen">
         {children}
       </body>
     </html>
