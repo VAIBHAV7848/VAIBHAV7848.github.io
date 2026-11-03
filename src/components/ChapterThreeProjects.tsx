@@ -23,15 +23,24 @@ export default function ChapterThreeProjects() {
           return (
             <div
               key={project.id}
-              className={`relative grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start ${
-                isEven ? "md:text-left" : "md:flex-row-reverse"
+              className={`relative grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-x-12 items-start pl-12 md:pl-0 ${
+                isEven ? "md:text-left" : ""
               }`}
             >
               {/* Central Spine Connection Node with wire tension hover */}
               <div
                 id={`project-node-${project.id}`}
-                className="absolute left-1/2 -translate-x-1/2 top-4 w-8 h-8 rounded-full border-2 border-ink-950 bg-paper-100 flex items-center justify-center z-30 transition-transform duration-300 hover:scale-125 cursor-pointer shadow-sm group"
+                role="button"
+                tabIndex={0}
+                aria-label={`Inspect ${project.name} system architecture node`}
+                className="absolute left-6 md:left-1/2 -translate-x-1/2 top-4 w-8 h-8 rounded-full border-2 border-ink-950 bg-paper-100 flex items-center justify-center z-30 transition-transform duration-300 hover:scale-125 cursor-pointer shadow-sm group print:hidden focus:outline-none focus:ring-2 focus:ring-crimson"
                 onClick={() => setActiveModalProject(project)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActiveModalProject(project);
+                  }
+                }}
                 title="Click to inspect system architecture"
               >
                 <div className="w-2.5 h-2.5 rounded-full bg-crimson group-hover:scale-150 transition-transform" />
@@ -39,8 +48,10 @@ export default function ChapterThreeProjects() {
 
               {/* Project Meta Column */}
               <div
-                className={`md:col-span-4 font-mono text-xs text-ink-600 space-y-3 pt-2 ${
-                  isEven ? "md:order-1" : "md:order-2 md:text-right"
+                className={`font-mono text-xs text-ink-600 space-y-3 pt-2 ${
+                  isEven
+                    ? "md:col-span-5 md:order-1"
+                    : "md:col-span-5 md:col-start-8 md:order-2 md:text-right"
                 }`}
               >
                 <div className="flex items-center gap-2 text-crimson font-bold text-sm tracking-widest">
@@ -95,8 +106,10 @@ export default function ChapterThreeProjects() {
 
               {/* Project Body Column */}
               <div
-                className={`md:col-span-8 space-y-4 ${
-                  isEven ? "md:order-2" : "md:order-1"
+                className={`space-y-4 ${
+                  isEven
+                    ? "md:col-span-5 md:col-start-8 md:order-2"
+                    : "md:col-span-5 md:order-1"
                 }`}
               >
                 <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-950 leading-tight">

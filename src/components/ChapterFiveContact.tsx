@@ -39,11 +39,17 @@ export default function ChapterFiveContact() {
             {/* The Email Target where the continuous spine terminates as an ink underline */}
             <div className="inline-block relative">
               <a
-                id="terminal-email-target"
                 href={`mailto:${PROFILE.email}`}
-                className="font-mono text-xl sm:text-2xl md:text-3xl font-bold text-ink-950 hover:text-crimson transition-colors block py-2 select-all"
+                className="font-mono text-xl sm:text-2xl md:text-3xl font-bold text-ink-950 hover:text-crimson transition-colors block py-2 select-all whitespace-nowrap"
               >
-                {PROFILE.email}
+                <span id="terminal-email-target" className="inline-block">
+                  {PROFILE.email}
+                </span>
+                {/* Blinking terminal prompt cursor at terminal line end */}
+                <span
+                  className="inline-block w-2 h-5 bg-crimson ml-2 align-middle animate-pulse"
+                  aria-hidden="true"
+                />
               </a>
 
               {/* Copy trigger */}

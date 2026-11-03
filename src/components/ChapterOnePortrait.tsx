@@ -27,6 +27,7 @@ export default function ChapterOnePortrait() {
   const lastScrollTime = useRef<number>(Date.now());
   const lastProgress = useRef<number>(0);
   const velocityRef = useRef<number>(0);
+  const canvasSizeRef = useRef<{ w: number; h: number; dpr: number }>({ w: 0, h: 0, dpr: 1 });
 
   // Load points data
   useEffect(() => {
@@ -129,9 +130,15 @@ export default function ChapterOnePortrait() {
     const w = rect.width;
     const h = rect.height;
 
-    canvas.width = w * dpr;
-    canvas.height = h * dpr;
-    ctx.scale(dpr, dpr);
+    // Fast-path: Only reallocate canvas buffer if size or DPR actually changed
+    const targetW = Math.floor(w * dpr);
+    const targetH = Math.floor(h * dpr);
+    if (canvas.width !== targetW || canvas.height !== targetH || canvasSizeRef.current.dpr !== dpr) {
+      canvas.width = targetW;
+      canvas.height = targetH;
+      ctx.scale(dpr, dpr);
+      canvasSizeRef.current = { w, h, dpr };
+    }
 
     ctx.clearRect(0, 0, w, h);
 
@@ -181,7 +188,7 @@ export default function ChapterOnePortrait() {
       ctx.restore();
     }
 
-    // Terminal Neck Exit Indicator
+    // Terminal Neck Exit Indicator (Smooth convergence to bottom center)
     if (currentCount >= total - 1) {
       const exitPt = points[total - 1];
       const ex = exitPt[0] * w;
@@ -193,19 +200,22 @@ export default function ChapterOnePortrait() {
       ctx.arc(ex, ey, 4.5, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.strokeStyle = "#C8321A";
-      ctx.lineWidth = 1.8;
+      ctx.strokeStyle = "#121212";
+      ctx.lineWidth = 1.6;
       ctx.beginPath();
       ctx.moveTo(ex, ey);
-      ctx.lineTo(ex, h);
+      ctx.quadraticCurveTo(ex, (ey + h) / 2, w / 2, h);
       ctx.stroke();
       ctx.restore();
     }
   }, [progress, portraitData, useSvgMode, reducedMotion]);
 
-  // Window resize listener
+  // Window resize listener to invalidate canvas cache
   useEffect(() => {
-    const handleResize = () => setProgress((prev) => prev);
+    const handleResize = () => {
+      canvasSizeRef.current = { w: 0, h: 0, dpr: 1 };
+      setProgress((prev) => prev);
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -226,7 +236,7 @@ export default function ChapterOnePortrait() {
           </h1>
           <p className="font-serif italic text-sm sm:text-base text-ink-800">
             {progress === 0 && !reducedMotion ? (
-              <span className="text-crimson font-medium not-italic animate-pulse">
+              <span className="text-crimson font-medium not-italic motion-safe:animate-pulse">
                 ↓ Scroll downward to draw portrait in one continuous line
               </span>
             ) : progress < 1 ? (
@@ -249,6 +259,7 @@ export default function ChapterOnePortrait() {
               ref={canvasRef}
               className="w-full h-full block cursor-crosshair"
               style={{ width: "100%", height: "100%" }}
+              aria-hidden="true"
             />
           )}
 
@@ -258,6 +269,8 @@ export default function ChapterOnePortrait() {
               viewBox="0 0 800 800"
               className="w-full h-full block"
               style={{ width: "100%", height: "100%" }}
+              aria-hidden="true"
+              focusable="false"
             >
               <path
                 d={portraitData.svgPath}
@@ -267,23 +280,27 @@ export default function ChapterOnePortrait() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 style={{
-                  strokeDasharray: 40000,
+                  strokeDasharray: reducedMotion ? "none" : 40000,
                   strokeDashoffset: reducedMotion ? 0 : 40000 * (1 - progress),
-                  transition: "stroke-dashoffset 0.1s linear",
+                  transition: reducedMotion ? "none" : "stroke-dashoffset 0.1s linear",
                 }}
               />
             </svg>
           )}
 
           {/* Neck Exit Guide Line */}
-          {isComplete && (
-            <div className="absolute -bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none animate-bounce">
-              <span className="font-mono text-[10px] text-crimson font-bold uppercase tracking-wider mb-0.5">
-                Spine Exit
-              </span>
-              <ArrowDown className="w-4 h-4 text-crimson" />
-            </div>
-          )}
+          <div
+            id="portrait-spine-exit"
+            className={`absolute -bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none motion-safe:animate-bounce transition-opacity duration-300 ${
+              isComplete ? "opacity-100" : "opacity-0"
+            }`}
+            aria-hidden="true"
+          >
+            <span className="font-mono text-[10px] text-crimson font-bold uppercase tracking-wider mb-0.5">
+              Spine Exit
+            </span>
+            <ArrowDown className="w-4 h-4 text-crimson" />
+          </div>
         </div>
 
         {/* Floating Controls & Metrics */}

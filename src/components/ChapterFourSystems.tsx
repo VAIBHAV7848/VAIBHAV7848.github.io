@@ -23,7 +23,7 @@ export default function ChapterFourSystems() {
   ];
 
   return (
-    <section className="relative py-28 px-6 md:px-16 lg:px-24 max-w-6xl mx-auto">
+    <section id="systems" className="relative py-28 px-6 md:px-16 lg:px-24 max-w-6xl mx-auto">
       <div className="flex items-center gap-2 mb-12 font-mono text-xs uppercase tracking-widest text-ink-600">
         <span className="text-crimson font-bold">Chapter 04</span>
         <span>·</span>

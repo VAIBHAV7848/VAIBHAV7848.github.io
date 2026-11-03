@@ -36,9 +36,9 @@ export default function ScrubberMiniMap() {
   }, []);
 
   return (
-    <div className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 hidden sm:flex flex-col items-center gap-6 pointer-events-auto">
+    <div className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 hidden sm:flex flex-col items-center gap-6 pointer-events-auto print:hidden">
       {/* Vertical Thread Line */}
-      <div className="relative w-px h-48 bg-ink-200">
+      <div className="relative w-px h-48 bg-ink-200" aria-hidden="true">
         <div
           className="absolute top-0 left-0 w-full bg-crimson transition-all duration-150"
           style={{ height: `${Math.min(100, progress * 100)}%` }}
@@ -51,7 +51,7 @@ export default function ScrubberMiniMap() {
       </div>
 
       {/* Chapter Marker Links */}
-      <div className="flex flex-col gap-3 font-mono text-[10px] text-ink-500 uppercase">
+      <nav aria-label="Chapter quick links" className="flex flex-col gap-3 font-mono text-[10px] text-ink-500 uppercase">
         {sections.map((sec) => (
           <a
             key={sec.id}
@@ -63,7 +63,7 @@ export default function ScrubberMiniMap() {
             <span>{sec.label}</span>
           </a>
         ))}
-      </div>
+      </nav>
     </div>
   );
 }
