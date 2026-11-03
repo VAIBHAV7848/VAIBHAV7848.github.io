@@ -93,9 +93,15 @@ export default function PageSpine() {
       const emailRect = emailEl.getBoundingClientRect();
       emailLeft = emailRect.left;
       emailRight = emailRect.right;
-      emailY = emailRect.top + window.scrollY - containerTop + emailRect.height + 3;
+      emailY = emailRect.top + window.scrollY - containerTop + emailRect.height + 4;
       hasEmail = true;
     }
+
+    const contactTopY = contactEl
+      ? contactEl.offsetTop - containerTop
+      : sysBottomY > 0
+      ? sysBottomY + 60
+      : calculatedHeight - 400;
 
     // Phase 2: Pure In-Memory Mathematical Bezier String Generation
     // The spine starts at (cx, 0) matching Chapter 1's neck exit line
@@ -159,19 +165,35 @@ export default function PageSpine() {
 
     // Chapter 5: Terminal Underline & Pen Lift
     if (hasEmail) {
-      const approachY = emailY - 55;
-      // Lead vertically down to approach email
-      d += ` L ${cx} ${approachY}`;
+      // Step 1: Lead vertically from Chapter 4 systems into Chapter 5 entrance
+      const ch5EntryY = Math.max(sysBottomY + 20, contactTopY + 20);
+      d += ` L ${cx} ${ch5EntryY}`;
 
-      // Smooth C1 transition from vertical centerline into horizontal underline
-      // Enters vertically at (cx, approachY), arrives horizontally at (emailLeft, emailY)
-      d += ` C ${cx} ${approachY + 32}, ${emailLeft - 36} ${emailY}, ${emailLeft} ${emailY}`;
+      // Step 2: Smooth harmonic S-curve from centerline into the clear left margin gutter
+      // Clamped so it never touches screen edge on mobile
+      const gutterOffset = w < 640 ? 14 : 32;
+      const xLead = Math.max(12, emailLeft - gutterOffset);
+      const ch5CurveMid = ch5EntryY + 80;
+      const ch5GutterEntryY = Math.min(emailY - 40, ch5EntryY + 160);
 
-      // Horizontal underline sweep under email
-      d += ` L ${emailRight} ${emailY}`;
+      // S-curve into left margin gutter (above heading and content)
+      d += ` C ${cx} ${ch5EntryY + 50}, ${xLead} ${ch5CurveMid}, ${xLead} ${ch5GutterEntryY}`;
 
-      // 45° calligraphic upward flick (pen lift)
-      d += ` C ${emailRight + 6} ${emailY}, ${emailRight + 10} ${emailY - 3}, ${emailRight + 12} ${emailY - 6}`;
+      // Step 3: Straight vertical guide line down the left margin
+      const bendStartY = emailY - 24;
+      if (bendStartY > ch5GutterEntryY) {
+        d += ` L ${xLead} ${bendStartY}`;
+      }
+
+      // Step 4: 90° smooth circular Bezier bend from vertical margin into horizontal baseline
+      d += ` C ${xLead} ${emailY - 10}, ${emailLeft - 14} ${emailY}, ${emailLeft} ${emailY}`;
+
+      // Step 5: Full horizontal underline sweep across entire email text
+      const underlineEndX = emailRight + 12;
+      d += ` L ${underlineEndX} ${emailY}`;
+
+      // Step 6: 45° calligraphic upward pen lift / terminal flourish
+      d += ` C ${underlineEndX + 6} ${emailY}, ${underlineEndX + 10} ${emailY - 4}, ${underlineEndX + 14} ${emailY - 8}`;
     } else {
       d += ` L ${cx} ${calculatedHeight}`;
     }
@@ -251,29 +273,40 @@ export default function PageSpine() {
       triggerRef.current.kill();
     }
 
+    const emailEl = document.getElementById("terminal-email-target");
+
     // Continuous ScrollTrigger Scrub
     triggerRef.current = ScrollTrigger.create({
       trigger: containerRef.current,
       start: "top 80%",
-      end: "bottom 70%",
+      endTrigger: emailEl || containerRef.current,
+      end: "bottom 65%",
       scrub: 0.15,
       onUpdate: (self) => {
         const progress = self.progress;
-        const offset = len * (1 - progress);
-        path.style.strokeDashoffset = `${offset}`;
 
-        // High-performance DOM transformation for Crimson Nib Tracer
-        // Bypasses React reconciliation for 120 FPS buttery-smooth motion
-        if (nibRef.current && len > 0) {
-          const currentDist = len * progress;
-          const pt = path.getPointAtLength(Math.min(len, Math.max(0, currentDist)));
-          nibRef.current.setAttribute("transform", `translate(${pt.x}, ${pt.y})`);
+        // When progress nears completion (>= 0.985), clamp strictly to 1.0
+        // to guarantee the underline and pen flick are 100% drawn!
+        if (progress >= 0.985) {
+          path.style.strokeDashoffset = "0";
+          if (nibRef.current) nibRef.current.style.opacity = "0";
+        } else {
+          const offset = len * (1 - progress);
+          path.style.strokeDashoffset = `${offset}`;
 
-          // Subtle opacity control: active during stroke, hides at boundaries
-          if (progress > 0.005 && progress < 0.998) {
-            nibRef.current.style.opacity = "1";
-          } else {
-            nibRef.current.style.opacity = "0";
+          // High-performance DOM transformation for Crimson Nib Tracer
+          // Bypasses React reconciliation for 120 FPS buttery-smooth motion
+          if (nibRef.current && len > 0) {
+            const currentDist = len * progress;
+            const pt = path.getPointAtLength(Math.min(len, Math.max(0, currentDist)));
+            nibRef.current.setAttribute("transform", `translate(${pt.x}, ${pt.y})`);
+
+            // Subtle opacity control: active during stroke, hides at boundaries
+            if (progress > 0.005) {
+              nibRef.current.style.opacity = "1";
+            } else {
+              nibRef.current.style.opacity = "0";
+            }
           }
         }
       },

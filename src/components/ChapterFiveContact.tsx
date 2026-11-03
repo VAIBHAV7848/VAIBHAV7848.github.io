@@ -14,7 +14,7 @@ export default function ChapterFiveContact() {
   };
 
   return (
-    <footer id="contact" className="relative min-h-[85vh] py-32 px-6 md:px-16 lg:px-24 max-w-6xl mx-auto flex flex-col justify-between">
+    <footer id="contact" className="relative min-h-screen pt-32 pb-48 md:pb-64 px-6 md:px-16 lg:px-24 max-w-6xl mx-auto flex flex-col justify-between">
       <div>
         <div className="flex items-center gap-2 mb-8 font-mono text-xs uppercase tracking-widest text-ink-600">
           <span className="text-crimson font-bold">Chapter 05</span>
@@ -40,7 +40,7 @@ export default function ChapterFiveContact() {
             <div className="inline-block relative">
               <a
                 href={`mailto:${PROFILE.email}`}
-                className="font-mono text-xl sm:text-2xl md:text-3xl font-bold text-ink-950 hover:text-crimson transition-colors block py-2 select-all whitespace-nowrap"
+                className="font-mono text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-ink-950 hover:text-crimson transition-colors block py-2 select-all whitespace-nowrap"
               >
                 <span id="terminal-email-target" className="inline-block">
                   {PROFILE.email}
@@ -76,7 +76,7 @@ export default function ChapterFiveContact() {
       </div>
 
       {/* Footer Meta & Socials */}
-      <div className="pt-24 border-t border-ink-200/60 flex flex-col sm:flex-row items-baseline justify-between gap-6 font-mono text-xs text-ink-600">
+      <div className="mt-32 pt-16 border-t border-ink-200/60 flex flex-col sm:flex-row items-baseline justify-between gap-6 font-mono text-xs text-ink-600">
         <div className="space-y-1">
           <div className="text-ink-950 font-bold uppercase">{PROFILE.name}</div>
           <div className="text-ink-500">ENGINEERED AROUND ONE CONTINUOUS LINE · {new Date().getFullYear()}</div>
