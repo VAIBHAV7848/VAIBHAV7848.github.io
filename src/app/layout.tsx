@@ -6,14 +6,12 @@ const serif = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-serif",
   display: "swap",
-  weight: ["400", "600", "700", "900"],
 });
 
 const mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
-  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
